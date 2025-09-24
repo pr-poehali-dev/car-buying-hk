@@ -136,7 +136,7 @@ function Index() {
                 <img 
                   src="/img/16066aa0-c88b-44a4-b8e8-ddbed0412266.jpg" 
                   alt="Профессиональная оценка автомобилей" 
-                  className="rounded-2xl shadow-2xl w-full h-[300px] object-cover"
+                  className="rounded-2xl shadow-2xl w-full h-[500px] object-cover mx-0"
                 />
               </div>
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-2xl opacity-50"></div>
@@ -459,7 +459,7 @@ function Index() {
               </div>
               <h3 className="font-roboto font-semibold text-xl mb-4">Телефон</h3>
               <div className="space-y-2">
-                <div className="text-lg font-semibold text-primary">+7 (4212) 55-55-55</div>
+                <div className="text-lg font-semibold text-primary">+7 984 177 15 88</div>
                 <div className="text-gray-300">Ежедневно с 8:00 до 20:00</div>
               </div>
             </div>
@@ -470,7 +470,7 @@ function Index() {
               </div>
               <h3 className="font-roboto font-semibold text-xl mb-4">WhatsApp</h3>
               <div className="space-y-2">
-                <div className="text-lg">+7 (4212) 55-55-55</div>
+                <div className="text-lg">+7 984 177 15 88</div>
                 <div className="text-gray-300">Быстрая связь и консультация</div>
               </div>
             </div>
@@ -481,7 +481,7 @@ function Index() {
               </div>
               <h3 className="font-roboto font-semibold text-xl mb-4">Telegram</h3>
               <div className="space-y-2">
-                <div className="text-lg">@avtovikup_khv</div>
+                <div className="text-lg">@+7 984 177 15 88</div>
                 <div className="text-gray-300">Ответим моментально</div>
               </div>
             </div>
