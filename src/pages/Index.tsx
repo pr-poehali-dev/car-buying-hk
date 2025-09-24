@@ -450,16 +450,16 @@ function Index() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+            <a href="tel:+79841771588" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
                 <Icon name="Phone" className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4">Телефон</h3>
+              <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">Телефон</h3>
               <div className="space-y-2">
-                <div className="text-lg font-semibold text-primary">+7 984 177 15 88</div>
+                <div className="text-lg font-semibold text-primary group-hover:text-primary/80 transition-colors">+7 984 177 15 88</div>
                 <div className="text-gray-300">Ежедневно с 8:00 до 20:00</div>
               </div>
-            </div>
+            </a>
 
             <a href="https://wa.me/79841771588" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
