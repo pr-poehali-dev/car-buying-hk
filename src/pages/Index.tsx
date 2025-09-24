@@ -478,12 +478,12 @@ function Index() {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Mail" className="w-8 h-8 text-white" />
+                <Icon name="MessageCircle" className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4">Email</h3>
+              <h3 className="font-roboto font-semibold text-xl mb-4">Telegram</h3>
               <div className="space-y-2">
-                <div className="text-lg">info@avtovikup-khv.ru</div>
-                <div className="text-gray-300">Ответим в течение часа</div>
+                <div className="text-lg">@avtovikup_khv</div>
+                <div className="text-gray-300">Ответим моментально</div>
               </div>
             </div>
           </div>
