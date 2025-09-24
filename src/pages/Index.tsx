@@ -130,8 +130,8 @@ function Index() {
               <div className="space-y-4">
                 <Badge className="bg-secondary text-white">Работаем с 2015 года</Badge>
                 <h1 className="font-roboto font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-tight">
-                  Выкуп автомобилей в 
-                  <span className="text-primary"> Хабаровске</span>
+                  Срочный выкуп авто в 
+                  <span className="text-primary"> Хабаровске</span> за 15 минут
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   Честная оценка, быстрая сделка, моментальная выплата. 
@@ -185,7 +185,7 @@ function Index() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
-              Онлайн оценка автомобиля
+              Бесплатная онлайн оценка авто в Хабаровске
             </h2>
             <p className="text-lg text-gray-600">
               Получите предварительную оценку за 2 минуты. Окончательная цена после осмотра.
