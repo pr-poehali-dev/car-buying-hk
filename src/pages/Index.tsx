@@ -461,16 +461,16 @@ function Index() {
               </div>
             </div>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+            <a href="https://wa.me/79841771588" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
                 <Icon name="MessageCircle" className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4">WhatsApp</h3>
+              <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">WhatsApp</h3>
               <div className="space-y-2">
-                <div className="text-lg">+7 984 177 15 88</div>
+                <div className="text-lg group-hover:text-primary transition-colors">+7 984 177 15 88</div>
                 <div className="text-gray-300">Быстрая связь и консультация</div>
               </div>
-            </div>
+            </a>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
