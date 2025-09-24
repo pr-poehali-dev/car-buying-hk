@@ -1,0 +1,36 @@
+{
+  "tests": [
+    {
+      "name": "Test telegram notification with valid data",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "brand": "Toyota",
+        "model": "Camry",
+        "year": "2020",
+        "mileage": "50000",
+        "condition": "Хорошее",
+        "phone": "+7 984 177 15 88"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": "boolean",
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test missing required fields",
+      "method": "POST", 
+      "path": "/",
+      "body": {
+        "brand": "Toyota"
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

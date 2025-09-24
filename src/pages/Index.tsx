@@ -76,10 +76,7 @@ function Index() {
                 <a href="#advantages" className="block px-3 py-2 text-gray-700 hover:text-primary">Преимущества</a>
                 <a href="#contacts" className="block px-3 py-2 text-gray-700 hover:text-primary">Контакты</a>
                 <div className="px-3 py-2">
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-white">
-                    <Icon name="Phone" className="w-4 h-4 mr-2" />
-                    +7 (4212) 55-55-55
-                  </Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white">+7 984-177-15-88</Button>
                 </div>
               </div>
             </div>
