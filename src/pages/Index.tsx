@@ -22,13 +22,17 @@ function Index() {
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('Отправка формы, данные:', evaluationForm);
+    
     // Validate required fields
-    if (!evaluationForm.brand || !evaluationForm.phone) {
-      alert('Пожалуйста, заполните марку автомобиля и телефон');
+    if (!evaluationForm.phone) {
+      alert('Пожалуйста, введите номер телефона');
       return;
     }
     
     try {
+      console.log('Отправляем запрос...');
+      
       // Send to Telegram
       const response = await fetch('https://functions.poehali.dev/108b79af-8083-4c0f-bd99-6bfd77151425', {
         method: 'POST',
@@ -38,7 +42,10 @@ function Index() {
         body: JSON.stringify(evaluationForm)
       });
       
+      console.log('Ответ получен, статус:', response.status);
+      
       const result = await response.json();
+      console.log('Результат:', result);
       
       if (response.ok && result.success) {
         alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
