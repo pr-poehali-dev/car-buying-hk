@@ -1,17 +1,18 @@
 import json
 import os
-import requests
+import urllib.request
+import urllib.parse
 from typing import Dict, Any
 
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
-    """
-    Отправляет уведомление в Telegram о новой заявке на оценку автомобиля
-    Args: event - данные запроса с информацией об автомобиле
-          context - контекст выполнения функции
-    Returns: HTTP ответ об успешной отправке или ошибке
-    """
-    method: str = event.get('httpMethod', 'POST')
+    '''
+    Business: Отправляет уведомления о новых заявках на оценку автомобилей в Telegram
+    Args: event - dict with httpMethod, body, headers
+          context - object with request_id, function_name attributes
+    Returns: HTTP response dict with status
+    '''
+    method: str = event.get('httpMethod', 'GET')
     
     # Handle CORS OPTIONS request
     if method == 'OPTIONS':
@@ -20,94 +21,109 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'headers': {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, X-User-Id, X-Auth-Token',
+                'Access-Control-Allow-Headers': 'Content-Type, X-User-Id, X-Auth-Token, X-Session-Id',
                 'Access-Control-Max-Age': '86400'
             },
+            'isBase64Encoded': False,
             'body': ''
         }
     
     if method != 'POST':
         return {
             'statusCode': 405,
-            'headers': {'Content-Type': 'application/json'},
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'isBase64Encoded': False,
             'body': json.dumps({'error': 'Method not allowed'})
         }
     
-    # Получаем данные из формы
-    body_data = json.loads(event.get('body', '{}'))
-    
-    # Проверяем обязательные поля
-    required_fields = ['brand', 'model', 'year', 'phone']
-    for field in required_fields:
-        if not body_data.get(field):
-            return {
-                'statusCode': 400,
-                'headers': {'Content-Type': 'application/json'},
-                'body': json.dumps({'error': f'Поле {field} обязательно для заполнения'})
-            }
-    
-    # Получаем токен и chat_id из переменных окружения
+    # Get Telegram credentials
     bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     
     if not bot_token or not chat_id:
         return {
             'statusCode': 500,
-            'headers': {'Content-Type': 'application/json'},
-            'body': json.dumps({'error': 'Telegram не настроен. Обратитесь к администратору.'})
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': 'Telegram credentials not configured'})
         }
     
-    # Формируем сообщение
-    message = f"""🚗 Новая заявка на оценку автомобиля!
-
-📋 Данные автомобиля:
-• Марка: {body_data['brand']}
-• Модель: {body_data['model']}
-• Год: {body_data['year']}
-• Пробег: {body_data.get('mileage', 'Не указан')} км
-• Состояние: {body_data.get('condition', 'Не указано')}
-
-📞 Контакт клиента: {body_data['phone']}
-
-⏰ Время заявки: {context.request_id}"""
+    # Parse request body
+    try:
+        body_data = json.loads(event.get('body', '{}'))
+    except json.JSONDecodeError:
+        return {
+            'statusCode': 400,
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': 'Invalid JSON'})
+        }
     
-    # Отправляем сообщение в Telegram
-    telegram_api_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    # Extract form data
+    brand = body_data.get('brand', 'Не указана')
+    model = body_data.get('model', 'Не указана')
+    year = body_data.get('year', 'Не указан')
+    mileage = body_data.get('mileage', 'Не указан')
+    condition = body_data.get('condition', 'Не указано')
+    phone = body_data.get('phone', 'Не указан')
     
-    telegram_data = {
+    # Format message
+    message = f"""🚗 НОВАЯ ЗАЯВКА НА ОЦЕНКУ АВТОМОБИЛЯ
+
+📋 Детали автомобиля:
+• Марка: {brand}
+• Модель: {model}
+• Год выпуска: {year}
+• Пробег: {mileage} км
+• Состояние: {condition}
+
+📞 Контакт клиента: {phone}
+
+⏰ Время заявки: {context.request_id}
+
+#АвтоВыкуп #НоваяЗаявка"""
+    
+    # Send to Telegram
+    telegram_url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+    
+    data = {
         'chat_id': chat_id,
         'text': message,
-        'parse_mode': 'Markdown'
+        'parse_mode': 'HTML'
     }
     
     try:
-        response = requests.post(telegram_api_url, data=telegram_data, timeout=10)
+        # Encode data
+        encoded_data = urllib.parse.urlencode(data).encode('utf-8')
         
-        if response.status_code == 200:
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'body': json.dumps({'success': True, 'message': 'Заявка успешно отправлена!'})
-            }
-        else:
-            return {
-                'statusCode': 500,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'body': json.dumps({'error': 'Ошибка отправки в Telegram'})
-            }
+        # Create request
+        req = urllib.request.Request(telegram_url, data=encoded_data, method='POST')
+        req.add_header('Content-Type', 'application/x-www-form-urlencoded')
+        
+        # Send request
+        with urllib.request.urlopen(req) as response:
+            result = response.read().decode('utf-8')
             
-    except requests.exceptions.RequestException:
         return {
-            'statusCode': 500,
+            'statusCode': 200,
             'headers': {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps({'error': 'Ошибка соединения с Telegram'})
+            'isBase64Encoded': False,
+            'body': json.dumps({
+                'success': True,
+                'message': 'Заявка успешно отправлена в Telegram'
+            })
+        }
+        
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'isBase64Encoded': False,
+            'body': json.dumps({
+                'success': False,
+                'error': f'Ошибка отправки в Telegram: {str(e)}'
+            })
         }
