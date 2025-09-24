@@ -466,13 +466,12 @@ function Index() {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="MapPin" className="w-8 h-8 text-white" />
+                <Icon name="MessageCircle" className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4">Адрес</h3>
+              <h3 className="font-roboto font-semibold text-xl mb-4">WhatsApp</h3>
               <div className="space-y-2">
-                <div className="text-lg">г. Хабаровск</div>
-                <div className="text-gray-300">ул. Амурский бульвар, 12</div>
-                <div className="text-gray-300">Выезжаем по всему краю</div>
+                <div className="text-lg">+7 (4212) 55-55-55</div>
+                <div className="text-gray-300">Быстрая связь и консультация</div>
               </div>
             </div>
 
