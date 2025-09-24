@@ -136,7 +136,7 @@ function Index() {
                 <img 
                   src="/img/16066aa0-c88b-44a4-b8e8-ddbed0412266.jpg" 
                   alt="Профессиональная оценка автомобилей" 
-                  className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                  className="rounded-2xl shadow-2xl w-full h-[300px] object-cover"
                 />
               </div>
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-2xl opacity-50"></div>
