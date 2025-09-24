@@ -1,0 +1,13 @@
+{
+  "tests": [{
+    "name": "Test get chat IDs",
+    "method": "GET",
+    "path": "/",
+    "expectedStatus": 200,
+    "expectedBody": {
+      "success": true,
+      "chats": "array"
+    },
+    "bodyMatcher": "partial"
+  }]
+}
