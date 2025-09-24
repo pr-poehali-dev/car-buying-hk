@@ -481,7 +481,7 @@ function Index() {
               </div>
               <h3 className="font-roboto font-semibold text-xl mb-4">Telegram</h3>
               <div className="space-y-2">
-                <div className="text-lg">@+7 984 177 15 88</div>
+                <div className="text-lg">@Avtovykupkhb27</div>
                 <div className="text-gray-300">Ответим моментально</div>
               </div>
             </div>
