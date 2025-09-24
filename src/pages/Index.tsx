@@ -49,10 +49,7 @@ function Index() {
               <a href="#process" className="text-gray-700 hover:text-primary transition-colors">Процесс</a>
               <a href="#advantages" className="text-gray-700 hover:text-primary transition-colors">Преимущества</a>
               <a href="#contacts" className="text-gray-700 hover:text-primary transition-colors">Контакты</a>
-              <Button className="bg-primary hover:bg-primary/90 text-white">
-                <Icon name="Phone" className="w-4 h-4 mr-2" />
-                +7 (4212) 55-55-55
-              </Button>
+              <Button className="bg-primary hover:bg-primary/90 text-white">+7 984 177 15 88</Button>
             </div>
 
             {/* Mobile Menu Button */}
