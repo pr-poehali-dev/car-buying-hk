@@ -472,16 +472,16 @@ function Index() {
               </div>
             </a>
 
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+            <a href="https://t.me/Avtovykupkhb27" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
                 <Icon name="MessageCircle" className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4">Telegram</h3>
+              <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">Telegram</h3>
               <div className="space-y-2">
-                <div className="text-lg">@Avtovykupkhb27</div>
+                <div className="text-lg group-hover:text-primary transition-colors">@Avtovykupkhb27</div>
                 <div className="text-gray-300">Ответим моментально</div>
               </div>
-            </div>
+            </a>
           </div>
 
           <div className="mt-16 pt-8 border-t border-gray-800 text-center">
