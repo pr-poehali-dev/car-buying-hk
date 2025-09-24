@@ -22,49 +22,42 @@ function Index() {
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    console.log('Отправка формы, данные:', evaluationForm);
-    
     // Validate required fields
     if (!evaluationForm.phone) {
       alert('Пожалуйста, введите номер телефона');
       return;
     }
     
-    try {
-      console.log('Отправляем запрос...');
-      
-      // Send to Telegram
-      const response = await fetch('https://functions.poehali.dev/108b79af-8083-4c0f-bd99-6bfd77151425', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(evaluationForm)
-      });
-      
-      console.log('Ответ получен, статус:', response.status);
-      
-      const result = await response.json();
-      console.log('Результат:', result);
-      
-      if (response.ok && result.success) {
-        alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
-        // Reset form
-        setEvaluationForm({
-          brand: '',
-          model: '',
-          year: '',
-          mileage: '',
-          condition: '',
-          phone: ''
-        });
-      } else {
-        throw new Error(result.error || 'Ошибка отправки');
-      }
-    } catch (error) {
-      console.error('Ошибка отправки заявки:', error);
-      alert('Произошла ошибка при отправке заявки. Попробуйте позже или свяжитесь с нами по телефону.');
-    }
+    // Format message for WhatsApp
+    const message = `🚗 ЗАЯВКА НА ОЦЕНКУ АВТОМОБИЛЯ
+
+📋 Детали:
+• Марка: ${evaluationForm.brand || 'Не указана'}
+• Модель: ${evaluationForm.model || 'Не указана'}
+• Год: ${evaluationForm.year || 'Не указан'}
+• Пробег: ${evaluationForm.mileage || 'Не указан'} км
+• Состояние: ${evaluationForm.condition || 'Не указано'}
+
+📞 Телефон клиента: ${evaluationForm.phone}`;
+    
+    // Send via WhatsApp
+    const whatsappUrl = `https://wa.me/79841771588?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    // Show success message
+    alert('Спасибо! Ваша заявка отправлена через WhatsApp. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
+    
+    // Reset form
+    setEvaluationForm({
+      brand: '',
+      model: '',
+      year: '',
+      mileage: '',
+      condition: '',
+      phone: ''
+    });
   };
 
   return (
