@@ -559,9 +559,7 @@ function Index() {
           </div>
 
           <div className="mt-16 pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">
-              © 2024 АвтоВыкуп Хабаровск. Все права защищены.
-            </p>
+            <p className="text-gray-400">© 2025 АвтоВыкуп Хабаровск. Все права защищены.</p>
           </div>
         </div>
       </section>
