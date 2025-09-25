@@ -27,6 +27,11 @@ function Index() {
       alert('Пожалуйста, введите номер телефона');
       return;
     }
+
+    // Yandex Metrika goal tracking - Form submission
+    if (typeof window !== 'undefined' && (window as any).ym) {
+      (window as any).ym(104279599, 'reachGoal', 'FORM_SUBMIT');
+    }
     
     // Format message for WhatsApp
     const message = `🚗 ЗАЯВКА НА ОЦЕНКУ АВТОМОБИЛЯ
@@ -45,6 +50,11 @@ function Index() {
     
     // Open WhatsApp
     window.open(whatsappUrl, '_blank');
+
+    // Yandex Metrika goal tracking - WhatsApp click
+    if (typeof window !== 'undefined' && (window as any).ym) {
+      (window as any).ym(104279599, 'reachGoal', 'WHATSAPP_CLICK');
+    }
     
     // Show success message
     alert('Спасибо! Ваша заявка отправлена через WhatsApp. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
@@ -85,7 +95,11 @@ function Index() {
               <a href="#process" className="text-gray-700 hover:text-primary transition-colors">Процесс</a>
               <a href="#advantages" className="text-gray-700 hover:text-primary transition-colors">Преимущества</a>
               <a href="#contacts" className="text-gray-700 hover:text-primary transition-colors">Контакты</a>
-              <a href="tel:+79841771588">
+              <a href="tel:+79841771588" onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).ym) {
+                  (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                }
+              }}>
                 <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2">
                   <Icon name="Phone" className="w-4 h-4" />
                   Заказать звонок
@@ -114,7 +128,12 @@ function Index() {
                 <div className="px-3 py-2">
                   <Button 
                     className="w-full bg-primary hover:bg-primary/90 text-white"
-                    onClick={() => window.location.href = 'tel:+79841771588'}
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && (window as any).ym) {
+                        (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                      }
+                      window.location.href = 'tel:+79841771588';
+                    }}
                   >
                     +7 984-177-15-88
                   </Button>
@@ -493,7 +512,11 @@ function Index() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a href="tel:+79841771588" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
+            <a href="tel:+79841771588" className="text-center block group hover:transform hover:scale-105 transition-all duration-200" onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).ym) {
+                (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+              }
+            }}>
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
                 <Icon name="Phone" className="w-8 h-8 text-white" />
               </div>
@@ -504,7 +527,11 @@ function Index() {
               </div>
             </a>
 
-            <a href="https://wa.me/79841771588" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
+            <a href="https://wa.me/79841771588" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200" onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).ym) {
+                (window as any).ym(104279599, 'reachGoal', 'WHATSAPP_CLICK');
+              }
+            }}>
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
                 <Icon name="MessageCircle" className="w-8 h-8 text-white" />
               </div>
@@ -515,7 +542,11 @@ function Index() {
               </div>
             </a>
 
-            <a href="https://t.me/Avtovykupkhb27" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200">
+            <a href="https://t.me/Avtovykupkhb27" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200" onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).ym) {
+                (window as any).ym(104279599, 'reachGoal', 'TELEGRAM_CLICK');
+              }
+            }}>
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
                 <Icon name="MessageCircle" className="w-8 h-8 text-white" />
               </div>
