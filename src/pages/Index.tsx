@@ -523,7 +523,7 @@ function Index() {
               <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">Телефон</h3>
               <div className="space-y-2">
                 <div className="text-lg font-semibold text-primary group-hover:text-primary/80 transition-colors">+7 984 177 15 88</div>
-                <div className="text-gray-300">Ежедневно с 8:00 до 20:00</div>
+                <div className="text-gray-300">Круглосуточно</div>
               </div>
             </a>
 
