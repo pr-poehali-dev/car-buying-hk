@@ -83,7 +83,7 @@ function Index() {
                 className="h-10 w-10 rounded-lg object-cover"
               />
               <div>
-                <h1 className="font-roboto font-bold text-xl text-gray-900">АвтоВыкуп</h1>
+                <h1 className="font-roboto font-bold text-xl text-gray-900">АвтоВыкуп27</h1>
                 <p className="text-xs text-gray-600">Хабаровский край</p>
               </div>
             </div>
