@@ -607,6 +607,133 @@ function Index() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
+              Отзывы наших клиентов
+            </h2>
+            <p className="text-lg text-gray-600">
+              Более 2000 довольных клиентов по всему Хабаровскому краю
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Сергей Михайлов",
+                city: "Хабаровск",
+                rating: 5,
+                date: "2 недели назад",
+                text: "Продал свою Toyota Camry 2015 года. Оценили честно, приехали в день обращения. Деньги получил сразу на карту. Очень доволен, рекомендую!",
+                car: "Toyota Camry 2015"
+              },
+              {
+                name: "Анна Соколова",
+                city: "Комсомольск-на-Амуре",
+                rating: 5,
+                date: "1 месяц назад",
+                text: "Битую машину после ДТП никто не хотел брать. Эти ребята приехали, осмотрели и сразу предложили адекватную цену. Спасибо за помощь!",
+                car: "Nissan X-Trail 2018"
+              },
+              {
+                name: "Дмитрий Петров",
+                city: "Амурск",
+                rating: 5,
+                date: "3 недели назад",
+                text: "Нужно было срочно продать авто для переезда. Позвонил утром, к обеду уже приехал оценщик. Вечером деньги были на руках. Очень быстро!",
+                car: "Mazda 6 2017"
+              },
+              {
+                name: "Елена Иванова",
+                city: "Советская Гавань",
+                rating: 5,
+                date: "2 месяца назад",
+                text: "Живу в Советской Гавани, думала никто не приедет так далеко. Приехали без проблем! Выкупили мою Honda за хорошую цену. Молодцы!",
+                car: "Honda CR-V 2016"
+              },
+              {
+                name: "Александр Ким",
+                city: "Бикин",
+                rating: 5,
+                date: "1 месяц назад",
+                text: "Кредитный автомобиль выкупили без проблем. Помогли со всеми документами и расчётом с банком. Профессионалы своего дела!",
+                car: "Hyundai Solaris 2019"
+              },
+              {
+                name: "Владимир Сидоров",
+                city: "Хабаровск",
+                rating: 5,
+                date: "3 недели назад",
+                text: "Сравнивал предложения от разных компаний. Здесь дали самую высокую цену и без всяких комиссий. Сделка прошла быстро и честно.",
+                car: "Subaru Outback 2014"
+              }
+            ].map((review, index) => (
+              <Card key={index} className="p-6 hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="p-0 space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-roboto font-semibold text-lg text-gray-900">
+                        {review.name}
+                      </h3>
+                      <p className="text-sm text-gray-500 flex items-center gap-1">
+                        <Icon name="MapPin" className="w-3 h-3" />
+                        {review.city}
+                      </p>
+                    </div>
+                    <div className="flex gap-1">
+                      {Array.from({ length: review.rating }).map((_, i) => (
+                        <Icon key={i} name="Star" className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 leading-relaxed">
+                    "{review.text}"
+                  </p>
+
+                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <Icon name="Car" className="w-4 h-4 text-primary" />
+                      <span>{review.car}</span>
+                    </div>
+                    <span className="text-xs text-gray-400">{review.date}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Card className="inline-block p-6 bg-gradient-to-r from-primary/5 to-secondary/5">
+              <CardContent className="p-0">
+                <div className="flex items-center justify-center gap-6">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-primary">4.9</div>
+                    <div className="flex gap-1 mt-2">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Icon key={i} name="Star" className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="h-16 w-px bg-gray-300"></div>
+                  <div className="text-left">
+                    <div className="text-2xl font-bold text-gray-900">2000+</div>
+                    <div className="text-sm text-gray-600">Довольных клиентов</div>
+                  </div>
+                  <div className="h-16 w-px bg-gray-300"></div>
+                  <div className="text-left">
+                    <div className="text-2xl font-bold text-gray-900">9 лет</div>
+                    <div className="text-sm text-gray-600">На рынке</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contacts" className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
