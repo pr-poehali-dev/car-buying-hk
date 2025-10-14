@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,6 +11,7 @@ import { YearSelect } from '@/components/YearSelect';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [evaluationForm, setEvaluationForm] = useState({
     brand: '',
     model: '',
@@ -21,6 +22,19 @@ function Index() {
   });
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -832,6 +846,17 @@ function Index() {
           </div>
         </div>
       </section>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-primary hover:bg-primary/90 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50 animate-bounce"
+          aria-label="Наверх"
+        >
+          <Icon name="ArrowUp" className="w-6 h-6" />
+        </button>
+      )}
     </div>
   );
 }
