@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import { BrandSelect } from '@/components/BrandSelect';
+import { ModelSelect } from '@/components/ModelSelect';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -219,30 +221,20 @@ function Index() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Марка автомобиля
                     </label>
-                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, brand: value})}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Выберите марку" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="toyota">Toyota</SelectItem>
-                        <SelectItem value="nissan">Nissan</SelectItem>
-                        <SelectItem value="mazda">Mazda</SelectItem>
-                        <SelectItem value="honda">Honda</SelectItem>
-                        <SelectItem value="subaru">Subaru</SelectItem>
-                        <SelectItem value="mitsubishi">Mitsubishi</SelectItem>
-                        <SelectItem value="other">Другая</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <BrandSelect 
+                      value={evaluationForm.brand}
+                      onValueChange={(value) => setEvaluationForm({...evaluationForm, brand: value, model: ''})}
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Модель
                     </label>
-                    <Input 
-                      placeholder="Например: Camry" 
+                    <ModelSelect 
+                      brand={evaluationForm.brand}
                       value={evaluationForm.model}
-                      onChange={(e) => setEvaluationForm({...evaluationForm, model: e.target.value})}
+                      onValueChange={(value) => setEvaluationForm({...evaluationForm, model: value})}
                     />
                   </div>
 
@@ -255,7 +247,7 @@ function Index() {
                         <SelectValue placeholder="Выберите год" />
                       </SelectTrigger>
                       <SelectContent>
-                        {Array.from({length: 25}, (_, i) => 2024 - i).map(year => (
+                        {Array.from({length: 50}, (_, i) => 2025 - i).map(year => (
                           <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
                         ))}
                       </SelectContent>
@@ -264,7 +256,7 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Пробег (км)
+                      Пробег (км) <span className="text-gray-400 text-xs">(необязательно)</span>
                     </label>
                     <Input 
                       placeholder="Например: 120000" 
