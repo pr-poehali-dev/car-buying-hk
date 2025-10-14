@@ -33,46 +33,36 @@ function Index() {
       (window as any).ym(104279599, 'reachGoal', 'FORM_SUBMIT');
     }
     
-    // Format message
-    const message = `🚗 ЗАЯВКА НА ОЦЕНКУ АВТОМОБИЛЯ
+    try {
+      // Send lead to backend (Telegram bot notification)
+      const response = await fetch('https://functions.poehali.dev/d96ee797-612a-46f2-b934-ed038b121758', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(evaluationForm)
+      });
 
-📋 Детали:
-• Марка: ${evaluationForm.brand || 'Не указана'}
-• Модель: ${evaluationForm.model || 'Не указана'}
-• Год: ${evaluationForm.year || 'Не указан'}
-• Пробег: ${evaluationForm.mileage || 'Не указан'} км
-• Состояние: ${evaluationForm.condition || 'Не указано'}
+      if (!response.ok) {
+        throw new Error('Failed to send lead');
+      }
 
-📞 Телефон клиента: ${evaluationForm.phone}`;
-    
-    // Send via Telegram
-    const telegramUrl = `https://t.me/Avtovykupkhb27?text=${encodeURIComponent(message)}`;
-    window.open(telegramUrl, '_blank');
-
-    // Send via WhatsApp (with delay to avoid popup blocker)
-    setTimeout(() => {
-      const whatsappUrl = `https://wa.me/79841771588?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-    }, 500);
-
-    // Yandex Metrika goal tracking
-    if (typeof window !== 'undefined' && (window as any).ym) {
-      (window as any).ym(104279599, 'reachGoal', 'TELEGRAM_CLICK');
-      (window as any).ym(104279599, 'reachGoal', 'WHATSAPP_CLICK');
+      // Show success message
+      alert('Ваша заявка оставлена! Дождитесь звонка от специалиста. Мы свяжемся с вами в течение 15 минут.');
+      
+      // Reset form
+      setEvaluationForm({
+        brand: '',
+        model: '',
+        year: '',
+        mileage: '',
+        condition: '',
+        phone: ''
+      });
+    } catch (error) {
+      alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам: +7 984 177 15 88');
+      console.error('Error sending lead:', error);
     }
-    
-    // Show success message
-    alert('Спасибо! Ваша заявка отправлена в Telegram и WhatsApp. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
-    
-    // Reset form
-    setEvaluationForm({
-      brand: '',
-      model: '',
-      year: '',
-      mileage: '',
-      condition: '',
-      phone: ''
-    });
   };
 
   return (

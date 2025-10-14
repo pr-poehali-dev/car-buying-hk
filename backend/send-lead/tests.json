@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "name": "Test lead submission",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "brand": "Toyota",
+        "model": "Camry",
+        "year": "2018",
+        "mileage": "120000",
+        "condition": "Хорошее",
+        "phone": "+7 984 177 15 88"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test OPTIONS request",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
