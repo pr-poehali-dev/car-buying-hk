@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { BrandSelect } from '@/components/BrandSelect';
 import { ModelSelect } from '@/components/ModelSelect';
+import { YearSelect } from '@/components/YearSelect';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -242,16 +243,10 @@ function Index() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Год выпуска
                     </label>
-                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, year: value})}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Выберите год" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Array.from({length: 50}, (_, i) => 2025 - i).map(year => (
-                          <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <YearSelect 
+                      value={evaluationForm.year}
+                      onValueChange={(value) => setEvaluationForm({...evaluationForm, year: value})}
+                    />
                   </div>
 
                   <div>
