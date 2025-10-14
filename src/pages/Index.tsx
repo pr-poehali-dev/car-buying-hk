@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import CarPriceCalculator from '@/components/CarPriceCalculator';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -199,15 +200,37 @@ function Index() {
         </div>
       </section>
 
+      {/* Price Calculator Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 via-white to-secondary/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
+              💰 Узнайте стоимость вашего авто за 1 минуту
+            </h2>
+            <p className="text-lg text-gray-600">
+              Наш калькулятор рассчитает примерную стоимость на основе рыночных данных
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <Card className="p-8 shadow-xl">
+              <CardContent className="p-0">
+                <CarPriceCalculator />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Online Evaluation Form */}
       <section id="evaluation" className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
-              Бесплатная онлайн оценка авто в Хабаровске
+              Получить точную оценку от эксперта
             </h2>
             <p className="text-lg text-gray-600">
-              Получите предварительную оценку за 2 минуты. Окончательная цена после осмотра.
+              Заполните форму и получите окончательную оценку после осмотра автомобиля
             </p>
           </div>
 
