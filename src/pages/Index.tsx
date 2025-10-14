@@ -84,34 +84,6 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background font-open-sans">
-      {/* SEO Schema для локального бизнеса */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "АвтоВыкуп27 Хабаровск",
-        "image": "https://avtovykupkhb27.ru/img/4d19976a-c708-4ad1-bca6-33a1ebd3ad51.jpg",
-        "telephone": "+79841771588",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Хабаровск",
-          "addressRegion": "Хабаровский край",
-          "addressCountry": "RU"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "48.4827",
-          "longitude": "135.0838"
-        },
-        "url": "https://avtovykupkhb27.ru",
-        "openingHoursSpecification": {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "08:00",
-          "closes": "20:00"
-        },
-        "priceRange": "$$"
-      })}} />
-    </div>
       {/* Navigation */}
       <nav className="bg-white/95 backdrop-blur-sm sticky top-0 z-50 border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
