@@ -33,7 +33,7 @@ function Index() {
       (window as any).ym(104279599, 'reachGoal', 'FORM_SUBMIT');
     }
     
-    // Format message for Telegram
+    // Format message
     const message = `🚗 ЗАЯВКА НА ОЦЕНКУ АВТОМОБИЛЯ
 
 📋 Детали:
@@ -47,17 +47,22 @@ function Index() {
     
     // Send via Telegram
     const telegramUrl = `https://t.me/Avtovykupkhb27?text=${encodeURIComponent(message)}`;
-    
-    // Open Telegram
     window.open(telegramUrl, '_blank');
 
-    // Yandex Metrika goal tracking - Telegram click
+    // Send via WhatsApp (with delay to avoid popup blocker)
+    setTimeout(() => {
+      const whatsappUrl = `https://wa.me/79841771588?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }, 500);
+
+    // Yandex Metrika goal tracking
     if (typeof window !== 'undefined' && (window as any).ym) {
       (window as any).ym(104279599, 'reachGoal', 'TELEGRAM_CLICK');
+      (window as any).ym(104279599, 'reachGoal', 'WHATSAPP_CLICK');
     }
     
     // Show success message
-    alert('Спасибо! Ваша заявка отправлена в Telegram. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
+    alert('Спасибо! Ваша заявка отправлена в Telegram и WhatsApp. Мы свяжемся с вами в течение 15 минут для уточнения деталей и предложения цены.');
     
     // Reset form
     setEvaluationForm({
