@@ -149,12 +149,12 @@ function Index() {
               <div className="space-y-4">
                 <Badge className="bg-secondary text-white">Работаем с 2015 года</Badge>
                 <h1 className="font-roboto font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-tight">
-                  Срочный выкуп авто в 
-                  <span className="text-primary"> Хабаровске</span> за 15 минут
+                  Срочный выкуп авто по 
+                  <span className="text-primary"> всему Хабаровскому краю</span> за 15 минут
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
                   Честная оценка, быстрая сделка, моментальная выплата. 
-                  Выкупаем авто любого года и состояния по всему Хабаровскому краю.
+                  Работаем в Хабаровске, Комсомольске-на-Амуре, Амурске, Советской Гавани, Бикине, Вяземском и во всех населённых пунктах края. Выезжаем в любой район!
                 </p>
               </div>
 
