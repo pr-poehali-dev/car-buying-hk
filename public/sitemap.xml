@@ -6,13 +6,41 @@
   <url>
     <loc>https://avtovykupkhb27.ru/</loc>
     <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://avtovykupkhb27.ru/img/4d19976a-c708-4ad1-bca6-33a1ebd3ad51.jpg</image:loc>
       <image:title>АвтоВыкуп Хабаровск - срочная скупка автомобилей</image:title>
       <image:caption>Выкуп автомобилей в Хабаровске за 15 минут. Любые авто: битые, кредитные, проблемные</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://avtovykupkhb27.ru/img/16066aa0-c88b-44a4-b8e8-ddbed0412266.jpg</image:loc>
+      <image:title>Профессиональная оценка автомобилей в Хабаровском крае</image:title>
+    </image:image>
+  </url>
+
+  <!-- Форма оценки -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/#evaluation</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Услуги -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/#services</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Контакты -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/#contacts</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 
 </urlset>
