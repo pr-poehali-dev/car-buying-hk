@@ -1,3 +1,13 @@
+User-agent: *
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +20,9 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+Sitemap: https://avtovykupkhb27.ru/sitemap.xml
+
+# Блокируем только служебные страницы
+Disallow: /admin
+Disallow: /*.json$
+Disallow: /api/
