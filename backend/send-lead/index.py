@@ -51,9 +51,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     # Validate data
     lead = LeadRequest(**body_data)
     
-    # Get Telegram credentials from environment  
-    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '8228446757:AAFJzDq806ntijVssOKacHCcLmigD5dZZOg')
-    chat_id = os.environ.get('TELEGRAM_CHAT_ID', '6275725133')
+    # Telegram credentials (hardcoded temporarily until secrets are properly configured)
+    bot_token = '8228446757:AAFJzDq806ntijVssOKacHCcLmigD5dZZOg'
+    chat_id = '6275725133'
     
     if not bot_token or not chat_id:
         return {
