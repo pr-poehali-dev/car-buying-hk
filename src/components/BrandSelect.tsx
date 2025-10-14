@@ -15,16 +15,22 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-const carBrands = [
-  "Acura", "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Buick", 
-  "Cadillac", "Changan", "Chery", "Chevrolet", "Chrysler", "Citroen", "Dacia", "Daewoo",
-  "Daihatsu", "Datsun", "Dodge", "FAW", "Ferrari", "Fiat", "Ford", "Foton", "Geely",
-  "Genesis", "GMC", "Great Wall", "Haval", "Honda", "Hummer", "Hyundai", "Infiniti",
-  "Isuzu", "Jaguar", "Jeep", "Kia", "Lada", "Lamborghini", "Lancia", "Land Rover",
-  "Lexus", "Lifan", "Lincoln", "Lotus", "Maserati", "Maybach", "Mazda", "McLaren",
-  "Mercedes-Benz", "MG", "Mini", "Mitsubishi", "Nissan", "Opel", "Peugeot", "Pontiac",
-  "Porsche", "RAM", "Renault", "Rolls-Royce", "Saab", "Seat", "Skoda", "Smart",
-  "SsangYong", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen", "Volvo", "УАЗ",
+const popularBrands = [
+  "Toyota", "Nissan", "Honda", "Mazda", "Subaru", "Mitsubishi",
+  "Hyundai", "Kia", "BMW", "Mercedes-Benz", "Audi", "Volkswagen",
+  "Lexus", "Ford", "Chevrolet", "Renault", "Skoda", "Lada"
+];
+
+const otherBrands = [
+  "Acura", "Alfa Romeo", "Aston Martin", "Bentley", "Bugatti", "Buick",
+  "Cadillac", "Changan", "Chery", "Chrysler", "Citroen", "Dacia", "Daewoo",
+  "Daihatsu", "Datsun", "Dodge", "FAW", "Ferrari", "Fiat", "Foton", "Geely",
+  "Genesis", "GMC", "Great Wall", "Haval", "Hummer", "Infiniti",
+  "Isuzu", "Jaguar", "Jeep", "Lamborghini", "Lancia", "Land Rover",
+  "Lifan", "Lincoln", "Lotus", "Maserati", "Maybach", "McLaren",
+  "MG", "Mini", "Opel", "Peugeot", "Pontiac",
+  "Porsche", "RAM", "Rolls-Royce", "Saab", "Seat", "Smart",
+  "SsangYong", "Suzuki", "Tesla", "Volvo", "УАЗ",
   "ГАЗ", "ЗАЗ", "Москвич", "Другая"
 ];
 
@@ -54,8 +60,27 @@ export function BrandSelect({ value, onValueChange }: BrandSelectProps) {
           <CommandInput placeholder="Поиск марки..." />
           <CommandList>
             <CommandEmpty>Марка не найдена.</CommandEmpty>
-            <CommandGroup>
-              {carBrands.map((brand) => (
+            <CommandGroup heading="Популярные марки">
+              {popularBrands.map((brand) => (
+                <CommandItem
+                  key={brand}
+                  value={brand}
+                  onSelect={(currentValue) => {
+                    onValueChange(currentValue === value ? "" : currentValue);
+                    setOpen(false);
+                  }}
+                >
+                  <Check
+                    className={`mr-2 h-4 w-4 ${
+                      value === brand ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  {brand}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+            <CommandGroup heading="Другие марки">
+              {otherBrands.map((brand) => (
                 <CommandItem
                   key={brand}
                   value={brand}
