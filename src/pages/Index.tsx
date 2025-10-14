@@ -431,8 +431,121 @@ function Index() {
         </div>
       </section>
 
+      {/* Coverage Map Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
+              География работы
+            </h2>
+            <p className="text-lg text-gray-600">
+              Выкупаем автомобили по всему Хабаровскому краю. Выезжаем в любой район!
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Cities List */}
+            <div className="space-y-6">
+              <h3 className="font-roboto font-semibold text-2xl text-gray-900 mb-6">
+                Основные города и районы
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { name: "Хабаровск", status: "Работаем" },
+                  { name: "Комсомольск-на-Амуре", status: "Работаем" },
+                  { name: "Амурск", status: "Работаем" },
+                  { name: "Советская Гавань", status: "Работаем" },
+                  { name: "Бикин", status: "Работаем" },
+                  { name: "Вяземский", status: "Работаем" },
+                  { name: "Николаевск-на-Амуре", status: "Работаем" },
+                  { name: "Ванино", status: "Работаем" },
+                  { name: "Переяславка", status: "Работаем" },
+                  { name: "Хабаровский район", status: "Работаем" },
+                  { name: "Комсомольский район", status: "Работаем" },
+                  { name: "Все населённые пункты края", status: "Выезжаем" }
+                ].map((city, index) => (
+                  <Card key={index} className="p-4 hover:shadow-md transition-shadow">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Icon name="MapPin" className="w-5 h-5 text-primary" />
+                        <span className="font-medium text-gray-900">{city.name}</span>
+                      </div>
+                      <Badge className="bg-green-100 text-green-700 hover:bg-green-100">
+                        <Icon name="Check" className="w-3 h-3 mr-1" />
+                        {city.status}
+                      </Badge>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Info Card */}
+            <div className="space-y-6">
+              <Card className="p-8 bg-gradient-to-br from-primary/5 to-secondary/5 border-primary/20">
+                <CardContent className="p-0 space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="Car" className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-roboto font-semibold text-xl text-gray-900 mb-2">
+                        Бесплатный выезд эксперта
+                      </h4>
+                      <p className="text-gray-600">
+                        Наш специалист приедет к вам в любую точку Хабаровского края для оценки автомобиля. Выезд абсолютно бесплатный!
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="Clock" className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-roboto font-semibold text-xl text-gray-900 mb-2">
+                        Работаем по всему краю
+                      </h4>
+                      <p className="text-gray-600">
+                        От Хабаровска до самых отдалённых посёлков и сёл. Выкупаем автомобили в любом районе края без дополнительных комиссий.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon name="Phone" className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-roboto font-semibold text-xl text-gray-900 mb-2">
+                        Быстрый выезд
+                      </h4>
+                      <p className="text-gray-600">
+                        Выезжаем в день обращения. В крупные города края — в течение 2-4 часов, в отдалённые районы — согласуем время удобное для вас.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-primary/20">
+                    <p className="text-center text-gray-700 font-medium mb-4">
+                      Нет вашего города в списке? Звоните!
+                    </p>
+                    <a href="tel:+79841771588">
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-white text-lg py-6">
+                        <Icon name="Phone" className="w-5 h-5 mr-2" />
+                        +7 984 177-15-88
+                      </Button>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Advantages Section */}
-      <section id="advantages" className="py-20">
+      <section id="advantages" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
