@@ -51,9 +51,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     # Validate data
     lead = LeadRequest(**body_data)
     
-    # Get Telegram credentials from environment
-    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN')
-    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+    # Get Telegram credentials from environment  
+    bot_token = os.environ.get('TELEGRAM_BOT_TOKEN', '8228446757:AAFJzDq806ntijVssOKacHCcLmigD5dZZOg')
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID', '6275725133')
     
     if not bot_token or not chat_id:
         return {
@@ -85,8 +85,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     data = urllib.parse.urlencode({
         'chat_id': chat_id,
-        'text': message,
-        'parse_mode': 'HTML'
+        'text': message
     }).encode('utf-8')
     
     req = urllib.request.Request(telegram_url, data=data, method='POST')
@@ -94,6 +93,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     try:
         with urllib.request.urlopen(req) as response:
             response_data = response.read()
+            telegram_response = json.loads(response_data.decode('utf-8'))
             
         return {
             'statusCode': 200,
@@ -102,7 +102,18 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'Access-Control-Allow-Origin': '*'
             },
             'isBase64Encoded': False,
-            'body': json.dumps({'success': True, 'message': 'Lead sent successfully'})
+            'body': json.dumps({'success': True, 'message': 'Lead sent successfully', 'telegram_response': telegram_response})
+        }
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode('utf-8')
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': f'Telegram API error: {str(e)}', 'details': error_body, 'bot_token_length': len(bot_token), 'chat_id': chat_id})
         }
     except Exception as e:
         return {
