@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "name": "Test form page",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}

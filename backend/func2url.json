@@ -1,4 +1,5 @@
 {
+  "get-chat-id": "https://functions.poehali.dev/b51c8780-990d-46c7-8a85-92aff7629849",
   "send-lead": "https://functions.poehali.dev/d96ee797-612a-46f2-b934-ed038b121758",
   "telegram-chat-finder": "https://functions.poehali.dev/a177ea1f-79f6-42f0-b1fa-2c1777beb52e",
   "telegram-notify": "https://functions.poehali.dev/108b79af-8083-4c0f-bd99-6bfd77151425"
