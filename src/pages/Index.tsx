@@ -746,51 +746,98 @@ function Index() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <a href="tel:+79841771588" className="text-center block group hover:transform hover:scale-105 transition-all duration-200" onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).ym) {
-                (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
-              }
-            }}>
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
-                <Icon name="Phone" className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">Телефон</h3>
-              <div className="space-y-2">
-                <div className="text-lg font-semibold text-primary group-hover:text-primary/80 transition-colors">+7 984 177 15 88</div>
-                <div className="text-gray-300">Круглосуточно</div>
-              </div>
-            </a>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-roboto font-semibold text-2xl mb-6">Свяжитесь с нами</h3>
+                <div className="space-y-6">
+                  <a href="tel:+79841771588" className="flex items-center gap-4 group hover:transform hover:translate-x-2 transition-all duration-200" onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).ym) {
+                      (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                    }
+                  }}>
+                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center group-hover:bg-primary/90">
+                      <Icon name="Phone" className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Телефон</div>
+                      <div className="text-xl font-semibold text-primary group-hover:text-primary/80">+7 984 177 15 88</div>
+                    </div>
+                  </a>
 
-            <a href="https://wa.me/79841771588" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200" onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).ym) {
-                (window as any).ym(104279599, 'reachGoal', 'WHATSAPP_CLICK');
-              }
-            }}>
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
-                <Icon name="MessageCircle" className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">WhatsApp</h3>
-              <div className="space-y-2">
-                <div className="text-lg group-hover:text-primary transition-colors">+7 984 177 15 88</div>
-                <div className="text-gray-300">Быстрая связь и консультация</div>
-              </div>
-            </a>
+                  <a href="https://wa.me/79841771588" target="_blank" className="flex items-center gap-4 group hover:transform hover:translate-x-2 transition-all duration-200" onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).ym) {
+                      (window as any).ym(104279599, 'reachGoal', 'WHATSAPP_CLICK');
+                    }
+                  }}>
+                    <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center group-hover:bg-green-600">
+                      <Icon name="MessageCircle" className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">WhatsApp</div>
+                      <div className="text-lg group-hover:text-primary">+7 984 177 15 88</div>
+                    </div>
+                  </a>
 
-            <a href="https://t.me/Avtovykupkhb27" target="_blank" className="text-center block group hover:transform hover:scale-105 transition-all duration-200" onClick={() => {
-              if (typeof window !== 'undefined' && (window as any).ym) {
-                (window as any).ym(104279599, 'reachGoal', 'TELEGRAM_CLICK');
-              }
-            }}>
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90">
-                <Icon name="MessageCircle" className="w-8 h-8 text-white" />
+                  <a href="https://t.me/Avtovykupkhb27" target="_blank" className="flex items-center gap-4 group hover:transform hover:translate-x-2 transition-all duration-200" onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).ym) {
+                      (window as any).ym(104279599, 'reachGoal', 'TELEGRAM_CLICK');
+                    }
+                  }}>
+                    <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center group-hover:bg-blue-600">
+                      <Icon name="Send" className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Telegram</div>
+                      <div className="text-lg group-hover:text-primary">@Avtovykupkhb27</div>
+                    </div>
+                  </a>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Icon name="MapPin" className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Адрес</div>
+                      <div className="text-lg">Хабаровск и Хабаровский край</div>
+                      <div className="text-sm text-gray-400">Выезжаем во все районы</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                      <Icon name="Clock" className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-gray-400">Режим работы</div>
+                      <div className="text-lg">Пн-Вс: 08:00 - 20:00</div>
+                      <div className="text-sm text-gray-400">Звонки принимаем круглосуточно</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-roboto font-semibold text-xl mb-4 group-hover:text-primary transition-colors">Telegram</h3>
-              <div className="space-y-2">
-                <div className="text-lg group-hover:text-primary transition-colors">@Avtovykupkhb27</div>
-                <div className="text-gray-300">Ответим моментально</div>
+            </div>
+
+            {/* Map */}
+            <div>
+              <h3 className="font-roboto font-semibold text-2xl mb-6">Мы на карте</h3>
+              <div className="rounded-2xl overflow-hidden shadow-xl h-[400px]">
+                <iframe 
+                  src="https://yandex.ru/map-widget/v1/?ll=135.083800%2C48.482700&z=11&l=map&pt=135.083800,48.482700,pm2rdm"
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="0"
+                  allowFullScreen
+                  style={{ position: 'relative' }}
+                  title="Карта Хабаровска"
+                ></iframe>
               </div>
-            </a>
+              <p className="text-sm text-gray-400 mt-4 text-center">
+                <Icon name="MapPin" className="w-4 h-4 inline mr-1" />
+                Работаем по всему Хабаровску и области — выезжаем к вам!
+              </p>
+            </div>
           </div>
 
           <div className="mt-16 pt-8 border-t border-gray-800 text-center">
