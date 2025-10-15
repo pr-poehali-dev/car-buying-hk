@@ -8,6 +8,7 @@ import Icon from '@/components/ui/icon';
 import { BrandSelect } from '@/components/BrandSelect';
 import { ModelSelect } from '@/components/ModelSelect';
 import { YearSelect } from '@/components/YearSelect';
+import FAQ from '@/components/FAQ';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -104,8 +105,7 @@ function Index() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#services" className="text-gray-700 hover:text-primary transition-colors">Услуги</a>
               <a href="#evaluation" className="text-gray-700 hover:text-primary transition-colors">Оценка</a>
-              <a href="#process" className="text-gray-700 hover:text-primary transition-colors">Процесс</a>
-              <a href="#advantages" className="text-gray-700 hover:text-primary transition-colors">Преимущества</a>
+              <a href="#faq" className="text-gray-700 hover:text-primary transition-colors">Вопросы</a>
               <a href="/blog" className="text-gray-700 hover:text-primary transition-colors">Блог</a>
               <a href="#contacts" className="text-gray-700 hover:text-primary transition-colors">Контакты</a>
               <a href="tel:+79841771588" onClick={() => {
@@ -135,8 +135,7 @@ function Index() {
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-primary">Услуги</a>
                 <a href="#evaluation" className="block px-3 py-2 text-gray-700 hover:text-primary">Оценка</a>
-                <a href="#process" className="block px-3 py-2 text-gray-700 hover:text-primary">Процесс</a>
-                <a href="#advantages" className="block px-3 py-2 text-gray-700 hover:text-primary">Преимущества</a>
+                <a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-primary">Вопросы</a>
                 <a href="/blog" className="block px-3 py-2 text-gray-700 hover:text-primary">Блог</a>
                 <a href="#contacts" className="block px-3 py-2 text-gray-700 hover:text-primary">Контакты</a>
                 <div className="px-3 py-2">
@@ -737,6 +736,9 @@ function Index() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQ />
+
       {/* Contact Section */}
       <section id="contacts" className="py-20 bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -865,7 +867,7 @@ function Index() {
                     <a href="#evaluation" className="text-gray-400 hover:text-primary transition-colors text-sm">Оценка авто</a>
                   </li>
                   <li>
-                    <a href="#process" className="text-gray-400 hover:text-primary transition-colors text-sm">Процесс работы</a>
+                    <a href="#faq" className="text-gray-400 hover:text-primary transition-colors text-sm">Частые вопросы</a>
                   </li>
                   <li>
                     <a href="/blog" className="text-gray-400 hover:text-primary transition-colors text-sm flex items-center gap-1">
