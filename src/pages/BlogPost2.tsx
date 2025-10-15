@@ -309,6 +309,57 @@ const BlogPost2 = () => {
                   </a>
                 </div>
               </div>
+
+              <div className="mt-12 pt-12 border-t-2 border-gray-200">
+                <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border-2 border-blue-200">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                      Нужна бесплатная консультация?
+                    </h3>
+                    <p className="text-gray-600">
+                      Свяжитесь с нами — ответим на все вопросы и поможем продать авто выгодно
+                    </p>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <a href="tel:+79841771588" className="block">
+                      <div className="bg-white p-6 rounded-xl border-2 border-transparent hover:border-primary transition-all hover:shadow-lg cursor-pointer">
+                        <div className="flex items-center justify-center mb-3">
+                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                            <Icon name="Phone" className="text-primary" size={24} />
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-gray-800 text-center mb-1">Позвонить</h4>
+                        <p className="text-sm text-gray-600 text-center">Быстрый ответ</p>
+                      </div>
+                    </a>
+
+                    <a href="https://wa.me/79841771588" target="_blank" rel="noopener noreferrer" className="block">
+                      <div className="bg-white p-6 rounded-xl border-2 border-transparent hover:border-green-500 transition-all hover:shadow-lg cursor-pointer">
+                        <div className="flex items-center justify-center mb-3">
+                          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                            <Icon name="MessageCircle" className="text-green-600" size={24} />
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-gray-800 text-center mb-1">WhatsApp</h4>
+                        <p className="text-sm text-gray-600 text-center">Написать в чат</p>
+                      </div>
+                    </a>
+
+                    <a href="/#evaluation" className="block">
+                      <div className="bg-white p-6 rounded-xl border-2 border-transparent hover:border-blue-500 transition-all hover:shadow-lg cursor-pointer">
+                        <div className="flex items-center justify-center mb-3">
+                          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <Icon name="Calculator" className="text-blue-600" size={24} />
+                          </div>
+                        </div>
+                        <h4 className="font-bold text-gray-800 text-center mb-1">Оценить авто</h4>
+                        <p className="text-sm text-gray-600 text-center">Заполнить форму</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </article>
