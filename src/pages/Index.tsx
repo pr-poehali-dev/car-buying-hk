@@ -843,8 +843,65 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-16 pt-8 border-t border-gray-800 text-center">
-            <p className="text-gray-400">© 2025 АвтоВыкуп Хабаровск. Все права защищены.</p>
+          <div className="mt-16 pt-8 border-t border-gray-800">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              {/* About */}
+              <div>
+                <h4 className="font-roboto font-semibold text-lg mb-4">АвтоВыкуп27</h4>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Профессиональный выкуп автомобилей в Хабаровске и Хабаровском крае. 
+                  Работаем с 2015 года, более 2000 довольных клиентов.
+                </p>
+              </div>
+
+              {/* Quick Links */}
+              <div>
+                <h4 className="font-roboto font-semibold text-lg mb-4">Быстрые ссылки</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a href="#services" className="text-gray-400 hover:text-primary transition-colors text-sm">Услуги</a>
+                  </li>
+                  <li>
+                    <a href="#evaluation" className="text-gray-400 hover:text-primary transition-colors text-sm">Оценка авто</a>
+                  </li>
+                  <li>
+                    <a href="#process" className="text-gray-400 hover:text-primary transition-colors text-sm">Процесс работы</a>
+                  </li>
+                  <li>
+                    <a href="/blog" className="text-gray-400 hover:text-primary transition-colors text-sm flex items-center gap-1">
+                      <Icon name="BookOpen" className="w-4 h-4" />
+                      Блог и статьи
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Blog Articles */}
+              <div>
+                <h4 className="font-roboto font-semibold text-lg mb-4">Полезное</h4>
+                <ul className="space-y-2">
+                  <li>
+                    <a href="/blog/kak-prodat-bitoe-avto-posle-dtp" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                      Как продать битое авто
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blog/vykup-kreditnykh-avtomobiley" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                      Выкуп кредитных авто
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/blog/srochnyy-vykup-avto" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                      Срочный выкуп за 1 день
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center pt-8 border-t border-gray-800">
+              <p className="text-gray-400 text-sm">© 2025 АвтоВыкуп Хабаровск. Все права защищены.</p>
+            </div>
           </div>
         </div>
       </section>
