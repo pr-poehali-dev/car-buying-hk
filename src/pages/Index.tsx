@@ -36,13 +36,19 @@ function Index() {
   useEffect(() => {
     const detectCity = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json/');
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        
+        if (!response.ok) {
+          throw new Error('GeoJS API failed');
+        }
+        
         const data = await response.json();
         
         const cityMap: { [key: string]: string } = {
           'Khabarovsk': 'khabarovsk',
           'Хабаровск': 'khabarovsk',
           'Komsomolsk-on-Amur': 'komsomolsk',
+          'Komsomolsk': 'komsomolsk',
           'Комсомольск-на-Амуре': 'komsomolsk',
           'Amursk': 'amursk',
           'Амурск': 'amursk',
@@ -53,6 +59,7 @@ function Index() {
           'Vyazemsky': 'vyazemsky',
           'Вяземский': 'vyazemsky',
           'Nikolaevsk-on-Amur': 'nikolaevsk',
+          'Nikolaevsk': 'nikolaevsk',
           'Николаевск-на-Амуре': 'nikolaevsk',
           'Vanino': 'vanino',
           'Ванино': 'vanino',
@@ -67,9 +74,10 @@ function Index() {
             ...prev,
             city: detectedCity
           }));
+          console.log('City detected:', data.city, '→', detectedCity);
         }
       } catch (error) {
-        console.log('City detection failed, using default');
+        console.log('City auto-detection unavailable');
       }
     };
 
