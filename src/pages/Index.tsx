@@ -346,7 +346,7 @@ function Index() {
                         <SelectItem value="amursk">Амурск</SelectItem>
                         <SelectItem value="sovetskaya-gavan">Советская Гавань</SelectItem>
                         <SelectItem value="bikin">Бикин</SelectItem>
-                        <SelectItem value="vyazemsky">Вяzemский</SelectItem>
+                        <SelectItem value="vyazemsky">Вяземский</SelectItem>
                         <SelectItem value="nikolaevsk">Николаевск-на-Амуре</SelectItem>
                         <SelectItem value="vanino">Ванино</SelectItem>
                         <SelectItem value="pereyaslavka">Переяславка</SelectItem>
