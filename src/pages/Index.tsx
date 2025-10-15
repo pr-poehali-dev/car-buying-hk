@@ -106,6 +106,7 @@ function Index() {
               <a href="#evaluation" className="text-gray-700 hover:text-primary transition-colors">Оценка</a>
               <a href="#process" className="text-gray-700 hover:text-primary transition-colors">Процесс</a>
               <a href="#advantages" className="text-gray-700 hover:text-primary transition-colors">Преимущества</a>
+              <a href="/blog" className="text-gray-700 hover:text-primary transition-colors">Блог</a>
               <a href="#contacts" className="text-gray-700 hover:text-primary transition-colors">Контакты</a>
               <a href="tel:+79841771588" onClick={() => {
                 if (typeof window !== 'undefined' && (window as any).ym) {
@@ -136,6 +137,7 @@ function Index() {
                 <a href="#evaluation" className="block px-3 py-2 text-gray-700 hover:text-primary">Оценка</a>
                 <a href="#process" className="block px-3 py-2 text-gray-700 hover:text-primary">Процесс</a>
                 <a href="#advantages" className="block px-3 py-2 text-gray-700 hover:text-primary">Преимущества</a>
+                <a href="/blog" className="block px-3 py-2 text-gray-700 hover:text-primary">Блог</a>
                 <a href="#contacts" className="block px-3 py-2 text-gray-700 hover:text-primary">Контакты</a>
                 <div className="px-3 py-2">
                   <Button 

@@ -43,4 +43,36 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- Блог -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/blog</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Статья: Как продать битое авто после ДТП -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/blog/kak-prodat-bitoe-avto-posle-dtp</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Статья: Выкуп кредитных автомобилей -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/blog/vykup-kreditnykh-avtomobiley</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Статья: Срочный выкуп авто -->
+  <url>
+    <loc>https://avtovykupkhb27.ru/blog/srochnyy-vykup-avto</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
 </urlset>
