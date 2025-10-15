@@ -17,7 +17,7 @@ function Index() {
     brand: '',
     model: '',
     year: '',
-    mileage: '',
+    city: '',
     condition: '',
     phone: ''
   });
@@ -73,7 +73,7 @@ function Index() {
         brand: '',
         model: '',
         year: '',
-        mileage: '',
+        city: '',
         condition: '',
         phone: ''
       });
@@ -266,13 +266,27 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Пробег (км) <span className="text-gray-400 text-xs">(необязательно)</span>
+                      Город
                     </label>
-                    <Input 
-                      placeholder="Например: 120000" 
-                      value={evaluationForm.mileage}
-                      onChange={(e) => setEvaluationForm({...evaluationForm, mileage: e.target.value})}
-                    />
+                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, city: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите город" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="khabarovsk">Хабаровск</SelectItem>
+                        <SelectItem value="komsomolsk">Комсомольск-на-Амуре</SelectItem>
+                        <SelectItem value="amursk">Амурск</SelectItem>
+                        <SelectItem value="sovetskaya-gavan">Советская Гавань</SelectItem>
+                        <SelectItem value="bikin">Бикин</SelectItem>
+                        <SelectItem value="vyazemsky">Вяземский</SelectItem>
+                        <SelectItem value="nikolaevsk">Николаевск-на-Амуре</SelectItem>
+                        <SelectItem value="vanino">Ванино</SelectItem>
+                        <SelectItem value="pereyaslavka">Переяславка</SelectItem>
+                        <SelectItem value="khabarovsky-district">Хабаровский район</SelectItem>
+                        <SelectItem value="komsomolsky-district">Комсомольский район</SelectItem>
+                        <SelectItem value="other">Другой населённый пункт</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div>
