@@ -11,6 +11,7 @@ import Blog from "./pages/Blog";
 import BlogPost1 from "./pages/BlogPost1";
 import BlogPost2 from "./pages/BlogPost2";
 import BlogPost3 from "./pages/BlogPost3";
+import EvaluationPopup from "./components/EvaluationPopup";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <EvaluationPopup />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
