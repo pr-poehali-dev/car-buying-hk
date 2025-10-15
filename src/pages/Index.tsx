@@ -33,6 +33,49 @@ function Index() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const detectCity = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        const cityMap: { [key: string]: string } = {
+          'Khabarovsk': 'khabarovsk',
+          'Хабаровск': 'khabarovsk',
+          'Komsomolsk-on-Amur': 'komsomolsk',
+          'Комсомольск-на-Амуре': 'komsomolsk',
+          'Amursk': 'amursk',
+          'Амурск': 'amursk',
+          'Sovetskaya Gavan': 'sovetskaya-gavan',
+          'Советская Гавань': 'sovetskaya-gavan',
+          'Bikin': 'bikin',
+          'Бикин': 'bikin',
+          'Vyazemsky': 'vyazemsky',
+          'Вяземский': 'vyazemsky',
+          'Nikolaevsk-on-Amur': 'nikolaevsk',
+          'Николаевск-на-Амуре': 'nikolaevsk',
+          'Vanino': 'vanino',
+          'Ванино': 'vanino',
+          'Pereyaslavka': 'pereyaslavka',
+          'Переяславка': 'pereyaslavka'
+        };
+
+        const detectedCity = cityMap[data.city] || '';
+        
+        if (detectedCity) {
+          setEvaluationForm(prev => ({
+            ...prev,
+            city: detectedCity
+          }));
+        }
+      } catch (error) {
+        console.log('City detection failed, using default');
+      }
+    };
+
+    detectCity();
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -266,9 +309,9 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Город
+                      Город {evaluationForm.city && <span className="text-xs text-green-600">✓ Определён автоматически</span>}
                     </label>
-                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, city: value})}>
+                    <Select value={evaluationForm.city} onValueChange={(value) => setEvaluationForm({...evaluationForm, city: value})}>
                       <SelectTrigger>
                         <SelectValue placeholder="Выберите город" />
                       </SelectTrigger>
