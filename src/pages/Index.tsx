@@ -309,6 +309,23 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Состояние
+                    </label>
+                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, condition: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Выберите состояние" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="excellent">Отличное</SelectItem>
+                        <SelectItem value="good">Хорошее</SelectItem>
+                        <SelectItem value="fair">Удовлетворительное</SelectItem>
+                        <SelectItem value="poor">Требует ремонта</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Город {evaluationForm.city && <span className="text-xs text-green-600">✓ Определён автоматически</span>}
                     </label>
                     <Select value={evaluationForm.city} onValueChange={(value) => setEvaluationForm({...evaluationForm, city: value})}>
@@ -321,30 +338,13 @@ function Index() {
                         <SelectItem value="amursk">Амурск</SelectItem>
                         <SelectItem value="sovetskaya-gavan">Советская Гавань</SelectItem>
                         <SelectItem value="bikin">Бикин</SelectItem>
-                        <SelectItem value="vyazemsky">Вяземский</SelectItem>
+                        <SelectItem value="vyazemsky">Вяzemский</SelectItem>
                         <SelectItem value="nikolaevsk">Николаевск-на-Амуре</SelectItem>
                         <SelectItem value="vanino">Ванино</SelectItem>
                         <SelectItem value="pereyaslavka">Переяславка</SelectItem>
                         <SelectItem value="khabarovsky-district">Хабаровский район</SelectItem>
                         <SelectItem value="komsomolsky-district">Комсомольский район</SelectItem>
                         <SelectItem value="other">Другой населённый пункт</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Состояние
-                    </label>
-                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, condition: value})}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Выберите состояние" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="excellent">Отличное</SelectItem>
-                        <SelectItem value="good">Хорошее</SelectItem>
-                        <SelectItem value="fair">Удовлетворительное</SelectItem>
-                        <SelectItem value="poor">Требует ремонта</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
