@@ -9,6 +9,7 @@ import { BrandSelect } from '@/components/BrandSelect';
 import { ModelSelect } from '@/components/ModelSelect';
 import { YearSelect } from '@/components/YearSelect';
 import FAQ from '@/components/FAQ';
+import { ExitIntentPopup } from '@/components/ExitIntentPopup';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -88,50 +89,60 @@ function Index() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleEvaluationSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate required fields
-    if (!evaluationForm.phone) {
-      alert('Пожалуйста, введите номер телефона');
-      return;
-    }
-
-    // Yandex Metrika goal tracking - Form submission
+  const sendLeadToTelegram = async (phoneNumber: string, source: string = 'form') => {
+    // Yandex Metrika goal tracking
     if (typeof window !== 'undefined' && (window as any).ym) {
-      (window as any).ym(104279599, 'reachGoal', 'FORM_SUBMIT');
+      (window as any).ym(104279599, 'reachGoal', source === 'exit-intent' ? 'EXIT_INTENT_SUBMIT' : 'FORM_SUBMIT');
     }
     
     try {
-      // Send lead to backend (Telegram bot notification)
+      const leadData = source === 'exit-intent' 
+        ? { phone: phoneNumber, source: 'exit-intent' }
+        : evaluationForm;
+
       const response = await fetch('https://functions.poehali.dev/d96ee797-612a-46f2-b934-ed038b121758', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(evaluationForm)
+        body: JSON.stringify(leadData)
       });
 
       if (!response.ok) {
         throw new Error('Failed to send lead');
       }
 
-      // Show success message
       alert('Ваша заявка отправлена! Дождитесь звонка от специалиста. Мы свяжемся с вами в течение 15 минут.');
       
-      // Reset form
-      setEvaluationForm({
-        brand: '',
-        model: '',
-        year: '',
-        city: '',
-        condition: '',
-        phone: ''
-      });
+      if (source === 'form') {
+        setEvaluationForm({
+          brand: '',
+          model: '',
+          year: '',
+          city: '',
+          condition: '',
+          phone: ''
+        });
+      }
     } catch (error) {
       alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам: +7 984 177 15 88');
       console.error('Error sending lead:', error);
     }
+  };
+
+  const handleEvaluationSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!evaluationForm.phone) {
+      alert('Пожалуйста, введите номер телефона');
+      return;
+    }
+
+    await sendLeadToTelegram(evaluationForm.phone, 'form');
+  };
+
+  const handleExitIntentSubmit = async (phone: string) => {
+    await sendLeadToTelegram(phone, 'exit-intent');
   };
 
   return (
@@ -983,6 +994,9 @@ function Index() {
           <Icon name="ArrowUp" className="w-6 h-6" />
         </button>
       )}
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup onSubmit={handleExitIntentSubmit} />
     </div>
   );
 }
