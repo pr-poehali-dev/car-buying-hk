@@ -74,8 +74,27 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': json.dumps({'error': 'Telegram credentials not configured'})
         }
     
-    # Format message
-    message = f'''🚗 НОВАЯ ЗАЯВКА НА ОЦЕНКУ АВТОМОБИЛЯ
+    # Save to database and get lead ID first
+    lead_id = None
+    if database_url:
+        try:
+            conn = psycopg2.connect(database_url)
+            cur = conn.cursor()
+            cur.execute(
+                "INSERT INTO leads (phone, city, source, utm_source, utm_medium, utm_campaign, form_type) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id",
+                (lead.phone, lead.city, lead.source, lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.form_type)
+            )
+            lead_id = cur.fetchone()[0]
+            conn.commit()
+            cur.close()
+            conn.close()
+        except Exception as db_error:
+            # Don't fail if DB insert fails, just log it
+            print(f"DB error: {db_error}")
+    
+    # Format message with lead ID
+    lead_number = f"#{lead_id}" if lead_id else "#NEW"
+    message = f'''🚗 НОВАЯ ЗАЯВКА {lead_number}
 
 📋 Детали автомобиля:
 • Марка: {lead.brand}
@@ -99,22 +118,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     req = urllib.request.Request(telegram_url, data=data, method='POST')
     
     try:
-        # Save to database
-        if database_url:
-            try:
-                conn = psycopg2.connect(database_url)
-                cur = conn.cursor()
-                cur.execute(
-                    "INSERT INTO leads (phone, city, source, utm_source, utm_medium, utm_campaign, form_type) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                    (lead.phone, lead.city, lead.source, lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.form_type)
-                )
-                conn.commit()
-                cur.close()
-                conn.close()
-            except Exception as db_error:
-                # Don't fail if DB insert fails, just log it
-                print(f"DB error: {db_error}")
-        
         # Send to Telegram
         with urllib.request.urlopen(req) as response:
             response_data = response.read()
