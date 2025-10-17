@@ -2,7 +2,8 @@ import json
 import os
 import urllib.request
 import urllib.parse
-from typing import Dict, Any
+import psycopg2
+from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field, ValidationError
 
 class LeadRequest(BaseModel):
@@ -12,6 +13,12 @@ class LeadRequest(BaseModel):
     mileage: str = Field(default='Не указан')
     condition: str = Field(default='Не указано')
     phone: str = Field(..., min_length=1)
+    city: Optional[str] = Field(default='Неизвестно')
+    source: Optional[str] = Field(default='website')
+    utm_source: Optional[str] = None
+    utm_medium: Optional[str] = None
+    utm_campaign: Optional[str] = None
+    form_type: Optional[str] = Field(default='evaluation')
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
@@ -51,9 +58,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     # Validate data
     lead = LeadRequest(**body_data)
     
-    # Telegram credentials (hardcoded temporarily until secrets are properly configured)
+    # Get credentials
     bot_token = '8228446757:AAFJzDq806ntijVssOKacHCcLmigD5dZZOg'
     chat_id = '6275725133'
+    database_url = os.environ.get('DATABASE_URL')
     
     if not bot_token or not chat_id:
         return {
@@ -91,6 +99,23 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     req = urllib.request.Request(telegram_url, data=data, method='POST')
     
     try:
+        # Save to database
+        if database_url:
+            try:
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                cur.execute(
+                    "INSERT INTO leads (phone, city, source, utm_source, utm_medium, utm_campaign, form_type) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                    (lead.phone, lead.city, lead.source, lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.form_type)
+                )
+                conn.commit()
+                cur.close()
+                conn.close()
+            except Exception as db_error:
+                # Don't fail if DB insert fails, just log it
+                print(f"DB error: {db_error}")
+        
+        # Send to Telegram
         with urllib.request.urlopen(req) as response:
             response_data = response.read()
             telegram_response = json.loads(response_data.decode('utf-8'))
