@@ -14,6 +14,7 @@ import { ExitIntentPopup } from '@/components/ExitIntentPopup';
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [evaluationForm, setEvaluationForm] = useState({
     brand: '',
     model: '',
@@ -32,6 +33,27 @@ function Index() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const endOfDay = new Date();
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const updateTimer = () => {
+      const now = new Date();
+      const diff = endOfDay.getTime() - now.getTime();
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        setTimeLeft({ hours, minutes, seconds });
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -219,6 +241,25 @@ function Index() {
         </div>
       </nav>
 
+      {/* Promo Banner */}
+      <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white py-3 md:py-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-20"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-center">
+            <div className="flex items-center gap-2">
+              <Icon name="Zap" className="w-5 h-5 md:w-6 md:h-6 animate-pulse" />
+              <span className="font-bold text-base md:text-xl">АКЦИЯ СЕГОДНЯ: +10 000₽ к цене выкупа!</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full">
+              <Icon name="Clock" className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="font-mono font-bold text-sm md:text-base">
+                {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary/10 via-white to-secondary/5 py-12 md:py-20 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGRlZnM+CjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgo8cGF0aCBkPSJNIDYwIDAgTCAwIDAgMCA2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjNmNGY2IiBzdHJva2Utd2lkdGg9IjEiLz4KPC9wYXR0ZXJuPgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz4KPHN2Zz4=')] opacity-30"></div>
@@ -285,10 +326,50 @@ function Index() {
         </div>
       </section>
 
+      {/* Social Proof Banner */}
+      <section className="py-6 md:py-8 bg-white border-y border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Icon name="Users" className="w-6 h-6 md:w-8 md:h-8 text-primary mr-2" />
+                <div className="text-2xl md:text-4xl font-bold text-primary">2000+</div>
+              </div>
+              <div className="text-xs md:text-sm text-gray-600">Довольных клиентов</div>
+            </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Icon name="Star" className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 mr-2 fill-yellow-400" />
+                <div className="text-2xl md:text-4xl font-bold text-primary">4.9</div>
+              </div>
+              <div className="text-xs md:text-sm text-gray-600">Средний рейтинг</div>
+            </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Icon name="Clock" className="w-6 h-6 md:w-8 md:h-8 text-primary mr-2" />
+                <div className="text-2xl md:text-4xl font-bold text-primary">15</div>
+              </div>
+              <div className="text-xs md:text-sm text-gray-600">Минут на сделку</div>
+            </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center mb-2">
+                <Icon name="Shield" className="w-6 h-6 md:w-8 md:h-8 text-primary mr-2" />
+                <div className="text-2xl md:text-4xl font-bold text-primary">100%</div>
+              </div>
+              <div className="text-xs md:text-sm text-gray-600">Безопасных сделок</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Online Evaluation Form */}
       <section id="evaluation" className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
+            <Badge className="bg-red-500 text-white mb-4 text-sm md:text-base px-4 py-2">
+              <Icon name="Flame" className="w-4 h-4 mr-1 inline" />
+              АКЦИЯ: +10 000₽ при заявке сегодня!
+            </Badge>
             <h2 className="font-roboto font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-3 md:mb-4">
               Бесплатная оценка авто за 2 минуты
             </h2>
@@ -393,9 +474,42 @@ function Index() {
                   <Icon name="Phone" className="w-5 h-5 mr-2" />
                   Получить оценку — перезвоним за 1 минуту
                 </Button>
+
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div className="flex flex-col items-center gap-2">
+                      <Icon name="Shield" className="w-8 h-8 text-green-600" />
+                      <span className="text-xs md:text-sm text-gray-600 font-medium">Гарантия безопасной сделки</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <Icon name="Lock" className="w-8 h-8 text-green-600" />
+                      <span className="text-xs md:text-sm text-gray-600 font-medium">Данные защищены</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <Icon name="TrendingUp" className="w-8 h-8 text-green-600" />
+                      <span className="text-xs md:text-sm text-gray-600 font-medium">Лучшая цена на рынке</span>
+                    </div>
+                  </div>
+                </div>
               </form>
             </CardContent>
           </Card>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm md:text-base text-gray-600 mb-4">
+              ⚡ <strong>Сегодня выкупили уже 3 автомобиля</strong> — не упустите свой шанс!
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-xs md:text-sm text-gray-500">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span>Специалист онлайн</span>
+              </div>
+              <div className="hidden sm:block w-px h-4 bg-gray-300"></div>
+              <span>📞 Ответим за 30 секунд</span>
+              <div className="hidden sm:block w-px h-4 bg-gray-300"></div>
+              <span>🚗 Выезд в течение часа</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -690,6 +804,65 @@ function Index() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Deals Section */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-12">
+            <Badge className="bg-green-600 text-white mb-4 text-sm md:text-base px-4 py-2">
+              <Icon name="CheckCircle2" className="w-4 h-4 mr-1 inline" />
+              Реальные сделки за последние 7 дней
+            </Badge>
+            <h2 className="font-roboto font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-3 md:mb-4">
+              Недавно выкупили
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { brand: 'Toyota Camry', year: '2018', price: '1 350 000₽', city: 'Хабаровск', date: 'Вчера' },
+              { brand: 'Nissan X-Trail', year: '2016', price: '980 000₽', city: 'Комсомольск', date: '2 дня назад' },
+              { brand: 'Honda CR-V', year: '2019', price: '1 680 000₽', city: 'Амурск', date: '3 дня назад' }
+            ].map((deal, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow border-2 border-green-100">
+                <CardContent className="p-0 space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h4 className="font-roboto font-semibold text-lg text-gray-900">{deal.brand}</h4>
+                      <p className="text-sm text-gray-600">{deal.year} год</p>
+                    </div>
+                    <Badge className="bg-green-100 text-green-800 border-green-200">
+                      {deal.date}
+                    </Badge>
+                  </div>
+                  <div className="pt-3 border-t border-gray-100">
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-primary">{deal.price}</span>
+                      <span className="text-sm text-gray-500 flex items-center gap-1">
+                        <Icon name="MapPin" className="w-4 h-4" />
+                        {deal.city}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs text-green-600">
+                    <Icon name="CheckCircle2" className="w-4 h-4" />
+                    <span>Сделка завершена</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <a href="#evaluation">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white px-8 py-6 text-base md:text-lg shadow-lg">
+                <Icon name="TrendingUp" className="w-5 h-5 mr-2" />
+                Продать моё авто по лучшей цене
+              </Button>
+            </a>
           </div>
         </div>
       </section>
