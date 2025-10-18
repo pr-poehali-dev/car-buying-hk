@@ -266,58 +266,96 @@ function Index() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div className="space-y-4">
-                <Badge className="bg-secondary text-white">Работаем с 2015 года</Badge>
-                <h1 className="font-roboto font-bold text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-tight">
-                  Срочный выкуп авто по 
-                  <span className="text-primary"> всему Хабаровскому краю</span> за 15 минут
+                <Badge className="bg-red-600 text-white text-base px-4 py-2 animate-pulse">
+                  <Icon name="Flame" className="w-4 h-4 mr-1 inline" />
+                  Сегодня +10 000₽ к цене!
+                </Badge>
+                <h1 className="font-roboto font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
+                  Выкупим ваше авто за<span className="text-primary"> 15 минут</span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Честная оценка, быстрая сделка, моментальная выплата. 
-                  Работаем в Хабаровске, Комсомольске-на-Амуре, Амурске, Советской Гавани, Бикине, Вяземском и во всех населённых пунктах края. Выезжаем в любой район!
-                </p>
+                <div className="bg-green-50 border-2 border-green-200 rounded-xl p-4">
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                    💰 Примеры цен:
+                  </p>
+                  <div className="space-y-1 text-sm sm:text-base text-gray-700">
+                    <div className="flex justify-between">
+                      <span>Toyota Camry 2018</span>
+                      <span className="font-bold">1 350 000₽</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Nissan X-Trail 2016</span>
+                      <span className="font-bold">980 000₽</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Honda CR-V 2019</span>
+                      <span className="font-bold">1 680 000₽</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 sm:gap-6">
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-primary">15 мин</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Оценка авто</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-primary">2000+</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Выкупленных авто</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-primary">100%</div>
-                  <div className="text-xs sm:text-sm text-gray-600">Честных сделок</div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white text-base sm:text-lg px-6 sm:px-8 py-6 sm:py-7 shadow-lg hover:shadow-xl transition-all w-full sm:w-auto" onClick={() => document.getElementById('evaluation')?.scrollIntoView({behavior: 'smooth'})}>
-                  <Icon name="Calculator" className="w-5 h-5 mr-2" />
-                  Узнать стоимость
-                </Button>
-                <a href="tel:+79841771588" onClick={() => {
-                  if (typeof window !== 'undefined' && (window as any).ym) {
-                    (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
-                  }
-                }} className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="text-base sm:text-lg px-6 sm:px-8 py-6 sm:py-7 border-2 w-full hover:bg-primary hover:text-white hover:border-primary transition-all">
+              <Card className="p-6 bg-white shadow-2xl border-2 border-primary">
+                <CardContent className="p-0 space-y-4">
+                  <div className="text-center">
+                    <h3 className="font-bold text-xl text-gray-900 mb-2">
+                      ⚡ Узнайте цену за 30 секунд
+                    </h3>
+                    <p className="text-sm text-gray-600">Оставьте телефон — перезвоним и назовём стоимость</p>
+                  </div>
+                  
+                  <Input 
+                    type="tel"
+                    placeholder="Ваш номер телефона"
+                    value={evaluationForm.phone}
+                    onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
+                    className="h-14 text-lg text-center"
+                  />
+                  
+                  <Button 
+                    onClick={handleEvaluationSubmit}
+                    size="lg" 
+                    className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-lg py-7 shadow-lg"
+                  >
                     <Icon name="Phone" className="w-5 h-5 mr-2" />
-                    Позвонить сейчас
+                    ПЕРЕЗВОНИТЕ МНЕ
                   </Button>
-                </a>
+
+                  <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
+                    <Icon name="Shield" className="w-4 h-4 text-green-600" />
+                    <span>Данные защищены • Без спама</span>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <a href="tel:+79841771588" onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).ym) {
+                  (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                }
+              }} className="block">
+                <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 text-white text-xl py-8 shadow-xl border-4 border-green-400">
+                  <Icon name="PhoneCall" className="w-6 h-6 mr-3 animate-pulse" />
+                  ПОЗВОНИТЬ СЕЙЧАС: +7 984 177-15-88
+                </Button>
+              </a>
+
+              <div className="flex items-center justify-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>Онлайн</span>
+                </div>
+                <span>•</span>
+                <span>Ответим за 30 сек</span>
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative hidden lg:block">
               <div className="relative z-10">
                 <img 
                   src="/img/16066aa0-c88b-44a4-b8e8-ddbed0412266.jpg" 
                   alt="Профессиональная оценка автомобилей" 
-                  className="rounded-2xl shadow-2xl w-full h-[500px] object-cover mx-0"
+                  className="rounded-2xl shadow-2xl w-full h-[600px] object-cover"
                 />
               </div>
               <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-2xl opacity-50"></div>
@@ -366,25 +404,64 @@ function Index() {
       <section id="evaluation" className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
-            <Badge className="bg-red-500 text-white mb-4 text-sm md:text-base px-4 py-2">
-              <Icon name="Flame" className="w-4 h-4 mr-1 inline" />
-              АКЦИЯ: +10 000₽ при заявке сегодня!
-            </Badge>
             <h2 className="font-roboto font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-3 md:mb-4">
-              Бесплатная оценка авто за 2 минуты
+              Хотите точную оценку? Заполните подробную форму
             </h2>
             <p className="text-base md:text-lg text-gray-600">
-              Укажите телефон — перезвоним и назовём стоимость. Окончательная цена после осмотра.
+              Чем больше данных — тем точнее цена. Или просто позвоните нам!
             </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Card className="p-6 bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-300">
+              <CardContent className="p-0 text-center space-y-4">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto">
+                  <Icon name="PhoneCall" className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-xl text-gray-900">Быстрый вариант</h3>
+                <p className="text-sm text-gray-700">Позвоните — узнаете цену за 2 минуты</p>
+                <a href="tel:+79841771588" onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).ym) {
+                    (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                  }
+                }}>
+                  <Button size="lg" className="w-full bg-green-600 hover:bg-green-700 text-white text-lg py-6">
+                    <Icon name="Phone" className="w-5 h-5 mr-2" />
+                    ПОЗВОНИТЬ +7 984 177-15-88
+                  </Button>
+                </a>
+              </CardContent>
+            </Card>
+
+            <Card className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-300">
+              <CardContent className="p-0 text-center space-y-4">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto">
+                  <Icon name="MessageSquare" className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-xl text-gray-900">Точная оценка</h3>
+                <p className="text-sm text-gray-700">Укажите данные авто — перезвоним с ценой</p>
+                <Button size="lg" variant="outline" className="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white text-lg py-6">
+                  <Icon name="ArrowDown" className="w-5 h-5 mr-2" />
+                  Заполнить форму ниже
+                </Button>
+              </CardContent>
+            </Card>
           </div>
 
           <Card className="p-4 sm:p-6 md:p-8 shadow-lg">
             <CardContent className="p-0">
               <form onSubmit={handleEvaluationSubmit} className="space-y-4 sm:space-y-6">
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                  <p className="text-sm text-yellow-800">
+                    <Icon name="Info" className="w-4 h-4 inline mr-1" />
+                    <strong>Можно заполнить только телефон</strong> — мы перезвоним и уточним детали
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Марка автомобиля
+                      Марка автомобиля <span className="text-gray-400">(необязательно)</span>
                     </label>
                     <BrandSelect 
                       value={evaluationForm.brand}
@@ -394,7 +471,7 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Модель
+                      Модель <span className="text-gray-400">(необязательно)</span>
                     </label>
                     <ModelSelect 
                       brand={evaluationForm.brand}
@@ -405,29 +482,12 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Год выпуска
+                      Год выпуска <span className="text-gray-400">(необязательно)</span>
                     </label>
                     <YearSelect 
                       value={evaluationForm.year}
                       onValueChange={(value) => setEvaluationForm({...evaluationForm, year: value})}
                     />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Состояние
-                    </label>
-                    <Select onValueChange={(value) => setEvaluationForm({...evaluationForm, condition: value})}>
-                      <SelectTrigger className="h-12 text-base">
-                        <SelectValue placeholder="Выберите состояние" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="excellent">Отличное</SelectItem>
-                        <SelectItem value="good">Хорошее</SelectItem>
-                        <SelectItem value="fair">Удовлетворительное</SelectItem>
-                        <SelectItem value="poor">Требует ремонта</SelectItem>
-                      </SelectContent>
-                    </Select>
                   </div>
 
                   <div>
@@ -455,24 +515,24 @@ function Index() {
                     </Select>
                   </div>
 
-                  <div>
+                  <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Телефон *
+                      Телефон * <span className="text-red-600">(обязательно)</span>
                     </label>
                     <Input 
                       type="tel"
                       placeholder="+7 (XXX) XXX-XX-XX" 
                       value={evaluationForm.phone}
                       onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
-                      className="h-12 text-base"
+                      className="h-14 text-lg"
                       required
                     />
                   </div>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white text-base sm:text-lg py-6 sm:py-7 shadow-lg hover:shadow-xl transition-all">
+                <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all">
                   <Icon name="Phone" className="w-5 h-5 mr-2" />
-                  Получить оценку — перезвоним за 1 минуту
+                  ОТПРАВИТЬ ЗАЯВКУ — перезвоним за 30 секунд
                 </Button>
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
