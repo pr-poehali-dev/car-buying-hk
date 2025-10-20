@@ -21,6 +21,7 @@ function Index() {
     condition: '',
     phone: ''
   });
+  const [selectedPhotos, setSelectedPhotos] = useState<File[]>([]);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
@@ -145,6 +146,7 @@ function Index() {
           condition: '',
           phone: ''
         });
+        setSelectedPhotos([]);
       }
     } catch (error) {
       alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам: +7 984 177 15 88');
@@ -525,6 +527,55 @@ function Index() {
                         <SelectItem value="no-docs">Без документов</SelectItem>
                       </SelectContent>
                     </Select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Фото автомобиля <span className="text-gray-400">(необязательно, до 5 фото)</span>
+                    </label>
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+                      <input 
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={(e) => {
+                          const files = Array.from(e.target.files || []);
+                          if (files.length + selectedPhotos.length > 5) {
+                            alert('Максимум 5 фотографий');
+                            return;
+                          }
+                          setSelectedPhotos([...selectedPhotos, ...files]);
+                        }}
+                        className="hidden"
+                        id="photo-upload"
+                      />
+                      <label htmlFor="photo-upload" className="cursor-pointer">
+                        <Icon name="Upload" className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                        <p className="text-sm text-gray-600 mb-1">Нажмите или перетащите фото</p>
+                        <p className="text-xs text-gray-500">JPG, PNG до 10MB каждое</p>
+                      </label>
+                    </div>
+                    {selectedPhotos.length > 0 && (
+                      <div className="mt-4 grid grid-cols-3 sm:grid-cols-5 gap-3">
+                        {selectedPhotos.map((file, index) => (
+                          <div key={index} className="relative group">
+                            <img 
+                              src={URL.createObjectURL(file)} 
+                              alt={`Фото ${index + 1}`}
+                              className="w-full h-20 object-cover rounded-lg border-2 border-gray-200"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setSelectedPhotos(selectedPhotos.filter((_, i) => i !== index))}
+                              className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                            >
+                              ×
+                            </button>
+                            <p className="text-xs text-gray-500 mt-1 text-center truncate">{file.name}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="md:col-span-2">
