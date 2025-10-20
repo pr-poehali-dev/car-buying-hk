@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
-import { BrandSelect } from '@/components/BrandSelect';
-import { ModelSelect } from '@/components/ModelSelect';
-import { YearSelect } from '@/components/YearSelect';
+
 import FAQ from '@/components/FAQ';
 import { ExitIntentPopup } from '@/components/ExitIntentPopup';
 
@@ -16,11 +14,6 @@ function Index() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [evaluationForm, setEvaluationForm] = useState({
-    brand: '',
-    model: '',
-    year: '',
-    city: '',
-    condition: '',
     phone: ''
   });
 
@@ -56,56 +49,7 @@ function Index() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const detectCity = async () => {
-      try {
-        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
-        
-        if (!response.ok) {
-          throw new Error('GeoJS API failed');
-        }
-        
-        const data = await response.json();
-        
-        const cityMap: { [key: string]: string } = {
-          'Khabarovsk': 'khabarovsk',
-          'Хабаровск': 'khabarovsk',
-          'Komsomolsk-on-Amur': 'komsomolsk',
-          'Komsomolsk': 'komsomolsk',
-          'Комсомольск-на-Амуре': 'komsomolsk',
-          'Amursk': 'amursk',
-          'Амурск': 'amursk',
-          'Sovetskaya Gavan': 'sovetskaya-gavan',
-          'Советская Гавань': 'sovetskaya-gavan',
-          'Bikin': 'bikin',
-          'Бикин': 'bikin',
-          'Vyazemsky': 'vyazemsky',
-          'Вяземский': 'vyazemsky',
-          'Nikolaevsk-on-Amur': 'nikolaevsk',
-          'Nikolaevsk': 'nikolaevsk',
-          'Николаевск-на-Амуре': 'nikolaevsk',
-          'Vanino': 'vanino',
-          'Ванино': 'vanino',
-          'Pereyaslavka': 'pereyaslavka',
-          'Переяславка': 'pereyaslavka'
-        };
 
-        const detectedCity = cityMap[data.city] || '';
-        
-        if (detectedCity) {
-          setEvaluationForm(prev => ({
-            ...prev,
-            city: detectedCity
-          }));
-          console.log('City detected:', data.city, '→', detectedCity);
-        }
-      } catch (error) {
-        console.log('City auto-detection unavailable');
-      }
-    };
-
-    detectCity();
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -138,11 +82,6 @@ function Index() {
       
       if (source === 'form') {
         setEvaluationForm({
-          brand: '',
-          model: '',
-          year: '',
-          city: '',
-          condition: '',
           phone: ''
         });
       }
@@ -442,76 +381,18 @@ function Index() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Марка автомобиля <span className="text-gray-400">(необязательно)</span>
-                    </label>
-                    <BrandSelect 
-                      value={evaluationForm.brand}
-                      onValueChange={(value) => setEvaluationForm({...evaluationForm, brand: value, model: ''})}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Модель <span className="text-gray-400">(необязательно)</span>
-                    </label>
-                    <ModelSelect 
-                      brand={evaluationForm.brand}
-                      value={evaluationForm.model}
-                      onValueChange={(value) => setEvaluationForm({...evaluationForm, model: value})}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Год выпуска <span className="text-gray-400">(необязательно)</span>
-                    </label>
-                    <YearSelect 
-                      value={evaluationForm.year}
-                      onValueChange={(value) => setEvaluationForm({...evaluationForm, year: value})}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Город {evaluationForm.city && <span className="text-xs text-green-600">✓ Определён</span>}
-                    </label>
-                    <Select value={evaluationForm.city} onValueChange={(value) => setEvaluationForm({...evaluationForm, city: value})}>
-                      <SelectTrigger className="h-12 text-base">
-                        <SelectValue placeholder="Выберите город" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="khabarovsk">Хабаровск</SelectItem>
-                        <SelectItem value="komsomolsk">Комсомольск-на-Амуре</SelectItem>
-                        <SelectItem value="amursk">Амурск</SelectItem>
-                        <SelectItem value="sovetskaya-gavan">Советская Гавань</SelectItem>
-                        <SelectItem value="bikin">Бикин</SelectItem>
-                        <SelectItem value="vyazemsky">Вяземский</SelectItem>
-                        <SelectItem value="nikolaevsk">Николаевск-на-Амуре</SelectItem>
-                        <SelectItem value="vanino">Ванино</SelectItem>
-                        <SelectItem value="pereyaslavka">Переяславка</SelectItem>
-                        <SelectItem value="khabarovsky-district">Хабаровский район</SelectItem>
-                        <SelectItem value="komsomolsky-district">Комсомольский район</SelectItem>
-                        <SelectItem value="other">Другой населённый пункт</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Телефон * <span className="text-red-600">(обязательно)</span>
-                    </label>
-                    <Input 
-                      type="tel"
-                      placeholder="+7 (XXX) XXX-XX-XX" 
-                      value={evaluationForm.phone}
-                      onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
-                      className="h-14 text-lg"
-                      required
-                    />
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Телефон * <span className="text-red-600">(обязательно)</span>
+                  </label>
+                  <Input 
+                    type="tel"
+                    placeholder="+7 (XXX) XXX-XX-XX" 
+                    value={evaluationForm.phone}
+                    onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
+                    className="h-14 text-lg"
+                    required
+                  />
                 </div>
 
                 <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all">
