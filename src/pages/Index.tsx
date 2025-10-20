@@ -273,7 +273,7 @@ function Index() {
                   Сегодня +10 000₽ к цене!
                 </Badge>
                 <h1 className="font-roboto font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
-                  Выкупим ваше авто за<span className="text-primary"> 15 минут</span>
+                  Срочный выкуп авто в Хабаровске за<span className="text-primary"> 15 минут</span>
                 </h1>
                 <div className="bg-green-50 border-2 border-green-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
                   <p className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">
@@ -354,7 +354,7 @@ function Index() {
               <div className="relative z-10">
                 <img 
                   src="/img/16066aa0-c88b-44a4-b8e8-ddbed0412266.jpg" 
-                  alt="Профессиональная оценка автомобилей" 
+                  alt="Срочный выкуп автомобилей в Хабаровске - быстрая оценка и деньги сразу" 
                   className="rounded-2xl shadow-2xl w-full h-[600px] object-cover"
                 />
               </div>
@@ -578,10 +578,10 @@ function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="font-roboto font-bold text-2xl md:text-3xl lg:text-4xl text-gray-900 mb-3 md:mb-4">
-              Наши услуги
+              Услуги выкупа автомобилей в Хабаровске
             </h2>
             <p className="text-base md:text-lg text-gray-600">
-              Полный спектр услуг по выкупу автомобилей в Хабаровском крае
+              Выкуп любых авто: легковые, грузовые, битые, кредитные. Быстро и дорого.
             </p>
           </div>
 
@@ -641,10 +641,10 @@ function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-roboto font-bold text-3xl lg:text-4xl text-gray-900 mb-4">
-              Как происходит выкуп
+              Как продать авто быстро в Хабаровске
             </h2>
             <p className="text-lg text-gray-600">
-              Простой и понятный процесс от звонка до получения денег
+              Простой процесс выкупа автомобиля за 4 шага — от звонка до денег
             </p>
           </div>
 
