@@ -18,6 +18,7 @@ function Index() {
     model: '',
     year: '',
     city: '',
+    condition: '',
     phone: ''
   });
 
@@ -141,6 +142,7 @@ function Index() {
           model: '',
           year: '',
           city: '',
+          condition: '',
           phone: ''
         });
       }
@@ -501,6 +503,26 @@ function Index() {
                         <SelectItem value="khabarovsky-district">Хабаровский район</SelectItem>
                         <SelectItem value="komsomolsky-district">Комсомольский район</SelectItem>
                         <SelectItem value="other">Другой населённый пункт</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Состояние авто <span className="text-gray-400">(необязательно)</span>
+                    </label>
+                    <Select value={evaluationForm.condition} onValueChange={(value) => setEvaluationForm({...evaluationForm, condition: value})}>
+                      <SelectTrigger className="h-12 text-base">
+                        <SelectValue placeholder="Выберите состояние" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="excellent">Отличное (без повреждений)</SelectItem>
+                        <SelectItem value="good">Хорошее (мелкие дефекты)</SelectItem>
+                        <SelectItem value="average">Среднее (требует ремонта)</SelectItem>
+                        <SelectItem value="damaged">Битое (после ДТП)</SelectItem>
+                        <SelectItem value="not-running">Не на ходу</SelectItem>
+                        <SelectItem value="credit">В кредите</SelectItem>
+                        <SelectItem value="no-docs">Без документов</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
