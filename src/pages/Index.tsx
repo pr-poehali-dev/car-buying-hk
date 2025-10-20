@@ -14,6 +14,10 @@ function Index() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [evaluationForm, setEvaluationForm] = useState({
+    brand: '',
+    model: '',
+    year: '',
+    city: '',
     phone: ''
   });
 
@@ -82,6 +86,10 @@ function Index() {
       
       if (source === 'form') {
         setEvaluationForm({
+          brand: '',
+          model: '',
+          year: '',
+          city: '',
           phone: ''
         });
       }
@@ -381,18 +389,72 @@ function Index() {
                   </p>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Телефон * <span className="text-red-600">(обязательно)</span>
-                  </label>
-                  <Input 
-                    type="tel"
-                    placeholder="+7 (XXX) XXX-XX-XX" 
-                    value={evaluationForm.phone}
-                    onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
-                    className="h-14 text-lg"
-                    required
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Марка автомобиля <span className="text-gray-400">(необязательно)</span>
+                    </label>
+                    <Input 
+                      type="text"
+                      placeholder="Например: Toyota, BMW, Lada" 
+                      value={evaluationForm.brand}
+                      onChange={(e) => setEvaluationForm({...evaluationForm, brand: e.target.value})}
+                      className="h-12 text-base"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Модель <span className="text-gray-400">(необязательно)</span>
+                    </label>
+                    <Input 
+                      type="text"
+                      placeholder="Например: Camry, X5, Granta" 
+                      value={evaluationForm.model}
+                      onChange={(e) => setEvaluationForm({...evaluationForm, model: e.target.value})}
+                      className="h-12 text-base"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Год выпуска <span className="text-gray-400">(необязательно)</span>
+                    </label>
+                    <Input 
+                      type="text"
+                      placeholder="Например: 2020" 
+                      value={evaluationForm.year}
+                      onChange={(e) => setEvaluationForm({...evaluationForm, year: e.target.value})}
+                      className="h-12 text-base"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Город <span className="text-gray-400">(необязательно)</span>
+                    </label>
+                    <Input 
+                      type="text"
+                      placeholder="Например: Хабаровск" 
+                      value={evaluationForm.city}
+                      onChange={(e) => setEvaluationForm({...evaluationForm, city: e.target.value})}
+                      className="h-12 text-base"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Телефон * <span className="text-red-600">(обязательно)</span>
+                    </label>
+                    <Input 
+                      type="tel"
+                      placeholder="+7 (XXX) XXX-XX-XX" 
+                      value={evaluationForm.phone}
+                      onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
+                      className="h-14 text-lg"
+                      required
+                    />
+                  </div>
                 </div>
 
                 <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all">
