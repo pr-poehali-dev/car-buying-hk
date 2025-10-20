@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 
@@ -30,6 +30,57 @@ function Index() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const detectCity = async () => {
+      try {
+        const response = await fetch('https://get.geojs.io/v1/ip/geo.json');
+        
+        if (!response.ok) {
+          throw new Error('GeoJS API failed');
+        }
+        
+        const data = await response.json();
+        
+        const cityMap: { [key: string]: string } = {
+          'Khabarovsk': 'khabarovsk',
+          'Хабаровск': 'khabarovsk',
+          'Komsomolsk-on-Amur': 'komsomolsk',
+          'Komsomolsk': 'komsomolsk',
+          'Комсомольск-на-Амуре': 'komsomolsk',
+          'Amursk': 'amursk',
+          'Амурск': 'amursk',
+          'Sovetskaya Gavan': 'sovetskaya-gavan',
+          'Советская Гавань': 'sovetskaya-gavan',
+          'Bikin': 'bikin',
+          'Бикин': 'bikin',
+          'Vyazemsky': 'vyazemsky',
+          'Вяземский': 'vyazemsky',
+          'Nikolaevsk-on-Amur': 'nikolaevsk',
+          'Nikolaevsk': 'nikolaevsk',
+          'Николаевск-на-Амуре': 'nikolaevsk',
+          'Vanino': 'vanino',
+          'Ванино': 'vanino',
+          'Pereyaslavka': 'pereyaslavka',
+          'Переяславка': 'pereyaslavka'
+        };
+
+        const detectedCity = cityMap[data.city] || '';
+        
+        if (detectedCity) {
+          setEvaluationForm(prev => ({
+            ...prev,
+            city: detectedCity
+          }));
+          console.log('City detected:', data.city, '→', detectedCity);
+        }
+      } catch (error) {
+        console.log('City auto-detection unavailable');
+      }
+    };
+
+    detectCity();
   }, []);
 
   useEffect(() => {
@@ -431,15 +482,27 @@ function Index() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Город <span className="text-gray-400">(необязательно)</span>
+                      Город {evaluationForm.city && <span className="text-xs text-green-600">✓ Определён</span>}
                     </label>
-                    <Input 
-                      type="text"
-                      placeholder="Например: Хабаровск" 
-                      value={evaluationForm.city}
-                      onChange={(e) => setEvaluationForm({...evaluationForm, city: e.target.value})}
-                      className="h-12 text-base"
-                    />
+                    <Select value={evaluationForm.city} onValueChange={(value) => setEvaluationForm({...evaluationForm, city: value})}>
+                      <SelectTrigger className="h-12 text-base">
+                        <SelectValue placeholder="Выберите город" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="khabarovsk">Хабаровск</SelectItem>
+                        <SelectItem value="komsomolsk">Комсомольск-на-Амуре</SelectItem>
+                        <SelectItem value="amursk">Амурск</SelectItem>
+                        <SelectItem value="sovetskaya-gavan">Советская Гавань</SelectItem>
+                        <SelectItem value="bikin">Бикин</SelectItem>
+                        <SelectItem value="vyazemsky">Вяземский</SelectItem>
+                        <SelectItem value="nikolaevsk">Николаевск-на-Амуре</SelectItem>
+                        <SelectItem value="vanino">Ванино</SelectItem>
+                        <SelectItem value="pereyaslavka">Переяславка</SelectItem>
+                        <SelectItem value="khabarovsky-district">Хабаровский район</SelectItem>
+                        <SelectItem value="komsomolsky-district">Комсомольский район</SelectItem>
+                        <SelectItem value="other">Другой населённый пункт</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div className="md:col-span-2">
