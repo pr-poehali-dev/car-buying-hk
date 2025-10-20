@@ -275,25 +275,9 @@ function Index() {
                 <h1 className="font-roboto font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
                   Срочный выкуп авто в Хабаровске за<span className="text-primary"> 15 минут</span>
                 </h1>
-                <div className="bg-green-50 border-2 border-green-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
-                  <p className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-2">
-                    💰 Примеры цен:
-                  </p>
-                  <div className="space-y-1 text-xs sm:text-sm lg:text-base text-gray-700">
-                    <div className="flex justify-between gap-2">
-                      <span>Toyota Camry 2018</span>
-                      <span className="font-bold whitespace-nowrap">1 350 000₽</span>
-                    </div>
-                    <div className="flex justify-between gap-2">
-                      <span>Nissan X-Trail 2016</span>
-                      <span className="font-bold whitespace-nowrap">980 000₽</span>
-                    </div>
-                    <div className="flex justify-between gap-2">
-                      <span>Honda CR-V 2019</span>
-                      <span className="font-bold whitespace-nowrap">1 680 000₽</span>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed">
+                  Покупаем любые автомобили: легковые, грузовые, битые, кредитные, без документов. Честная оценка, деньги сразу, выезд в любой район.
+                </p>
               </div>
 
               <Card className="p-4 sm:p-6 bg-white shadow-2xl border-2 border-primary">
