@@ -10,10 +10,9 @@ class LeadRequest(BaseModel):
     brand: str = Field(default='Не указана')
     model: str = Field(default='Не указана')
     year: str = Field(default='Не указан')
-    mileage: str = Field(default='Не указан')
     condition: str = Field(default='Не указано')
+    city: Optional[str] = Field(default='Не указан')
     phone: str = Field(..., min_length=1)
-    city: Optional[str] = Field(default='Неизвестно')
     source: Optional[str] = Field(default='website')
     utm_source: Optional[str] = None
     utm_medium: Optional[str] = None
@@ -92,6 +91,36 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             # Don't fail if DB insert fails, just log it
             print(f"DB error: {db_error}")
     
+    # Map condition codes to Russian text
+    condition_map = {
+        'excellent': 'Отличное (без повреждений)',
+        'good': 'Хорошее (мелкие дефекты)',
+        'average': 'Среднее (требует ремонта)',
+        'damaged': 'Битое (после ДТП)',
+        'not-running': 'Не на ходу',
+        'credit': 'В кредите',
+        'no-docs': 'Без документов'
+    }
+    
+    # Map city codes to Russian names
+    city_map = {
+        'khabarovsk': 'Хабаровск',
+        'komsomolsk': 'Комсомольск-на-Амуре',
+        'amursk': 'Амурск',
+        'sovetskaya-gavan': 'Советская Гавань',
+        'bikin': 'Бикин',
+        'vyazemsky': 'Вяземский',
+        'nikolaevsk': 'Николаевск-на-Амуре',
+        'vanino': 'Ванино',
+        'pereyaslavka': 'Переяславка',
+        'khabarovsky-district': 'Хабаровский район',
+        'komsomolsky-district': 'Комсомольский район',
+        'other': 'Другой населённый пункт'
+    }
+    
+    condition_text = condition_map.get(lead.condition, lead.condition if lead.condition != 'Не указано' else 'Не указано')
+    city_text = city_map.get(lead.city, lead.city if lead.city != 'Не указан' else 'Не указан')
+    
     # Format message with lead ID
     lead_number = f"#{lead_id}" if lead_id else "#NEW"
     message = f'''🚗 НОВАЯ ЗАЯВКА {lead_number}
@@ -100,8 +129,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 • Марка: {lead.brand}
 • Модель: {lead.model}
 • Год: {lead.year}
-• Пробег: {lead.mileage} км
-• Состояние: {lead.condition}
+• Состояние: {condition_text}
+• Город: {city_text}
 
 📞 Телефон клиента: {lead.phone}
 
