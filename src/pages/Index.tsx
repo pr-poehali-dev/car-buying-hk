@@ -312,9 +312,10 @@ function Index() {
                   
                   <Input 
                     type="tel"
-                    placeholder="Ваш номер телефона"
+                    placeholder="+7 (___) ___-__-__"
                     value={evaluationForm.phone}
-                    onChange={(e) => setEvaluationForm({...evaluationForm, phone: e.target.value})}
+                    onChange={handlePhoneChange}
+                    maxLength={18}
                     className="h-12 sm:h-14 text-base sm:text-lg text-center"
                   />
                   
@@ -322,6 +323,7 @@ function Index() {
                     onClick={handleEvaluationSubmit}
                     size="lg" 
                     className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-6 sm:py-7 shadow-lg"
+                    disabled={!isPhoneValid()}
                   >
                     <Icon name="Phone" className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     ПЕРЕЗВОНИТЕ МНЕ
