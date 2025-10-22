@@ -245,19 +245,18 @@ function Index() {
                 <a href="#faq" className="block px-3 py-2 text-gray-700 hover:text-primary">Вопросы</a>
                 <a href="/blog" className="block px-3 py-2 text-gray-700 hover:text-primary">Блог</a>
                 <a href="#contacts" className="block px-3 py-2 text-gray-700 hover:text-primary">Контакты</a>
-                <div className="px-3 py-2">
-                  <Button 
-                    className="w-full bg-primary hover:bg-primary/90 text-white"
-                    onClick={() => {
-                      if (typeof window !== 'undefined' && (window as any).ym) {
-                        (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
-                      }
-                      window.location.href = 'tel:+79841771588';
-                    }}
-                  >
-                    +7 984-177-15-88
-                  </Button>
-                </div>
+                <a 
+                  href="tel:+79841771588" 
+                  className="block px-3 py-3 text-primary hover:text-primary/80 font-bold text-lg"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).ym) {
+                      (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                    }
+                  }}
+                >
+                  <Icon name="Phone" className="w-5 h-5 inline mr-2" />
+                  +7 984 177-15-88
+                </a>
               </div>
             </div>
           )}
