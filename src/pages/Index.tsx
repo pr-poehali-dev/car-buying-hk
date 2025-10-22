@@ -207,21 +207,23 @@ function Index() {
             </div>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6">
               <a href="#services" className="text-gray-700 hover:text-primary transition-colors">Услуги</a>
               <a href="#evaluation" className="text-gray-700 hover:text-primary transition-colors">Оценка</a>
               <a href="#faq" className="text-gray-700 hover:text-primary transition-colors">Вопросы</a>
               <a href="/blog" className="text-gray-700 hover:text-primary transition-colors">Блог</a>
               <a href="#contacts" className="text-gray-700 hover:text-primary transition-colors">Контакты</a>
-              <a href="tel:+79841771588" onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).ym) {
-                  (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
-                }
-              }}>
-                <Button className="bg-primary hover:bg-primary/90 text-white flex items-center gap-2">
-                  <Icon name="Phone" className="w-4 h-4" />
-                  Заказать звонок
-                </Button>
+              <a 
+                href="tel:+79841771588" 
+                className="text-primary hover:text-primary/80 font-bold text-lg transition-colors flex items-center gap-2"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).ym) {
+                    (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
+                  }
+                }}
+              >
+                <Icon name="Phone" className="w-5 h-5" />
+                +7 984 177-15-88
               </a>
             </div>
 
