@@ -155,12 +155,18 @@ function Index() {
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!evaluationForm.phone) {
-      alert('Пожалуйста, введите номер телефона');
+    const cleanedPhone = evaluationForm.phone.replace(/\D/g, '');
+    if (cleanedPhone.length !== 11) {
+      alert('Пожалуйста, введите полный номер телефона (11 цифр)');
       return;
     }
 
     await sendLeadToTelegram(evaluationForm.phone, 'form');
+  };
+
+  const isPhoneValid = () => {
+    const cleanedPhone = evaluationForm.phone.replace(/\D/g, '');
+    return cleanedPhone.length === 11;
   };
 
   const handleExitIntentSubmit = async (phone: string) => {
@@ -542,7 +548,7 @@ function Index() {
                   </div>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all">
+                <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all" disabled={!isPhoneValid()}>
                   <Icon name="Phone" className="w-5 h-5 mr-2" />
                   ОТПРАВИТЬ ЗАЯВКУ — перезвоним за 30 секунд
                 </Button>
