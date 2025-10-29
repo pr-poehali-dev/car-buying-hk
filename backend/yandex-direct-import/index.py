@@ -200,6 +200,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             response = requests.post(api_url, headers=headers, json=campaign_payload)
             response_data = response.json()
             
+            print(f"Yandex.Direct API Response Status: {response.status_code}")
+            print(f"Yandex.Direct API Response: {json.dumps(response_data, ensure_ascii=False)}")
+            
             if response.status_code == 200 and 'result' in response_data:
                 campaign_id = response_data['result']['AddResults'][0]['Id']
                 
@@ -221,6 +224,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     })
                 }
             else:
+                error_message = 'Failed to create campaign. Check token and permissions.'
+                if 'error' in response_data:
+                    error_details = response_data['error']
+                    if isinstance(error_details, dict):
+                        error_message = f"{error_details.get('error_string', 'Unknown error')}: {error_details.get('error_detail', '')}"
+                
                 return {
                     'statusCode': 400,
                     'headers': {
@@ -230,7 +239,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({
                         'success': False,
                         'error': response_data,
-                        'message': 'Failed to create campaign. Check token and permissions.'
+                        'message': error_message,
+                        'statusCode': response.status_code
                     })
                 }
         
