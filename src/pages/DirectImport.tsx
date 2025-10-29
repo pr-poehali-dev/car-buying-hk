@@ -98,6 +98,19 @@ function DirectImport() {
                 <p className="font-semibold">{result.campaignName}</p>
               </div>
               <div className="bg-white p-4 rounded-lg border">
+                <h3 className="font-semibold mb-2 flex items-center gap-2">
+                  <Icon name="Key" className="w-4 h-4 text-blue-600" />
+                  Ключевые слова ({result.keywords?.length}):
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {result.keywords?.map((keyword: string, idx: number) => (
+                    <span key={idx} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm border border-blue-200">
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="bg-white p-4 rounded-lg border">
                 <h3 className="font-semibold mb-2">Заголовки для объявлений:</h3>
                 <ul className="space-y-1 text-sm">
                   {result.headlines?.map((headline: string, idx: number) => (
@@ -114,7 +127,7 @@ function DirectImport() {
               <Alert>
                 <Icon name="Info" className="h-4 w-4" />
                 <AlertDescription>
-                  Кампания создана в Яндекс.Директ. Теперь зайдите в интерфейс Директа и добавьте объявления вручную, используя заголовки и тексты выше.
+                  Кампания создана в Яндекс.Директ. Теперь зайдите в интерфейс Директа и добавьте объявления вручную, используя ключевые слова, заголовки и тексты выше.
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -188,7 +201,7 @@ function DirectImport() {
               <div>
                 <h3 className="font-semibold mb-1">Добавьте объявления</h3>
                 <p className="text-sm text-gray-600">
-                  Зайдите в интерфейс Яндекс.Директ и добавьте объявления в созданную кампанию, используя готовые заголовки и тексты
+                  Зайдите в интерфейс Яндекс.Директ и добавьте объявления в созданную кампанию, используя готовые ключевые слова, заголовки и тексты
                 </p>
               </div>
             </div>
