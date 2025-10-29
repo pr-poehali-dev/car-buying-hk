@@ -12,6 +12,9 @@ import Blog from "./pages/Blog";
 import BlogPost1 from "./pages/BlogPost1";
 import BlogPost2 from "./pages/BlogPost2";
 import BlogPost3 from "./pages/BlogPost3";
+import VykupBityhAvto from "./pages/VykupBityhAvto";
+import VykupKreditnyhAvto from "./pages/VykupKreditnyhAvto";
+import SrochnyyVykup from "./pages/SrochnyyVykup";
 import EvaluationPopup from "./components/EvaluationPopup";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
           <Route path="/blog/kak-prodat-bitoe-avto-posle-dtp" element={<BlogPost1 />} />
           <Route path="/blog/vykup-kreditnykh-avtomobiley" element={<BlogPost2 />} />
           <Route path="/blog/srochnyy-vykup-avto" element={<BlogPost3 />} />
+          <Route path="/vykup-bityh-avto" element={<VykupBityhAvto />} />
+          <Route path="/vykup-kreditnyh-avto" element={<VykupKreditnyhAvto />} />
+          <Route path="/srochnyy-vykup-avto" element={<SrochnyyVykup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
