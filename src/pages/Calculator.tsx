@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -168,7 +166,29 @@ export default function Calculator() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
+      <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-3" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+              <img 
+                src="/img/16066aa0-c88b-44a4-b8e8-ddbed0412266.jpg" 
+                alt="АвтоВыкуп Хабаровск" 
+                className="h-10 w-10 rounded-lg object-cover"
+              />
+              <div>
+                <h1 className="font-bold text-xl text-gray-900">АвтоВыкуп27</h1>
+                <p className="text-xs text-gray-600">Хабаровский край</p>
+              </div>
+            </div>
+            <a 
+              href="tel:+79841771588" 
+              className="text-primary hover:text-primary/80 font-bold text-lg transition-colors"
+            >
+              +7 984 177-15-88
+            </a>
+          </div>
+        </div>
+      </nav>
       
       <main className="flex-grow container mx-auto px-4 py-12">
         <div className="max-w-2xl mx-auto">
@@ -379,7 +399,13 @@ export default function Calculator() {
         </div>
       </main>
 
-      <Footer />
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-400">© 2024 АвтоВыкуп27. Все права защищены.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
