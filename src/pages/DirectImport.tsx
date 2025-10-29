@@ -39,7 +39,7 @@ function DirectImport() {
     setResult(null);
 
     try {
-      const response = await fetch('YOUR_FUNCTION_URL_HERE', {
+      const response = await fetch('https://functions.poehali.dev/deb60806-b5ce-4c80-ae95-bf0402ba6c39', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
