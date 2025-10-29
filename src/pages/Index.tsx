@@ -330,6 +330,25 @@ function Index() {
                     ПЕРЕЗВОНИТЕ МНЕ
                   </Button>
 
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <span className="w-full border-t border-gray-300" />
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-white px-2 text-gray-500">или</span>
+                    </div>
+                  </div>
+
+                  <Button 
+                    onClick={() => window.location.href = '/calculator'}
+                    size="lg" 
+                    variant="outline"
+                    className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white text-base sm:text-lg py-6 sm:py-7 shadow-lg transition-all"
+                  >
+                    <Icon name="Calculator" className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    РАССЧИТАТЬ СТОИМОСТЬ
+                  </Button>
+
                   <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
                     <Icon name="Shield" className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                     <span>Данные защищены • Без спама</span>
