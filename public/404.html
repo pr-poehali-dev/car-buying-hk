@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=/">
+</head>
+<body>
+    <script>
+        // Redirect to index.html with the current path as a query parameter
+        const path = window.location.pathname + window.location.search + window.location.hash;
+        window.location.href = '/?redirect=' + encodeURIComponent(path);
+    </script>
+</body>
+</html>
