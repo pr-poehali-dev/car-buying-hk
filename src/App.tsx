@@ -15,6 +15,7 @@ import BlogPost3 from "./pages/BlogPost3";
 import VykupBityhAvto from "./pages/VykupBityhAvto";
 import VykupKreditnyhAvto from "./pages/VykupKreditnyhAvto";
 import SrochnyyVykup from "./pages/SrochnyyVykup";
+import DirectImport from "./pages/DirectImport";
 import EvaluationPopup from "./components/EvaluationPopup";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/vykup-bityh-avto" element={<VykupBityhAvto />} />
           <Route path="/vykup-kreditnyh-avto" element={<VykupKreditnyhAvto />} />
           <Route path="/srochnyy-vykup-avto" element={<SrochnyyVykup />} />
+          <Route path="/admin/direct-import" element={<DirectImport />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
