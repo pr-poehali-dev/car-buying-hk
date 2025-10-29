@@ -5,7 +5,7 @@
   <!-- Главная страница -->
   <url>
     <loc>https://avtovykupkhb27.ru/</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -22,7 +22,7 @@
   <!-- Форма оценки -->
   <url>
     <loc>https://avtovykupkhb27.ru/#evaluation</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
@@ -30,7 +30,7 @@
   <!-- Услуги -->
   <url>
     <loc>https://avtovykupkhb27.ru/#services</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -38,7 +38,7 @@
   <!-- Контакты -->
   <url>
     <loc>https://avtovykupkhb27.ru/#contacts</loc>
-    <lastmod>2025-10-20</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -46,7 +46,7 @@
   <!-- Блог -->
   <url>
     <loc>https://avtovykupkhb27.ru/blog</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -54,7 +54,7 @@
   <!-- Статья: Как продать битое авто после ДТП -->
   <url>
     <loc>https://avtovykupkhb27.ru/blog/kak-prodat-bitoe-avto-posle-dtp</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -62,7 +62,7 @@
   <!-- Статья: Выкуп кредитных автомобилей -->
   <url>
     <loc>https://avtovykupkhb27.ru/blog/vykup-kreditnykh-avtomobiley</loc>
-    <lastmod>2025-10-14</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
@@ -70,7 +70,7 @@
   <!-- Статья: Срочный выкуп авто -->
   <url>
     <loc>https://avtovykupkhb27.ru/blog/srochnyy-vykup-avto</loc>
-    <lastmod>2025-10-13</lastmod>
+    <lastmod>2025-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
