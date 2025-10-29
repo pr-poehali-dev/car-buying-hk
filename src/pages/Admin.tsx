@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -172,6 +173,18 @@ function Admin() {
           </div>
           <div className="flex items-center gap-4">
             {saved && <Badge className="bg-green-100 text-green-800">✓ Сохранено</Badge>}
+            <Link to="/admin/direct-import">
+              <Button variant="outline">
+                <Icon name="ExternalLink" className="w-4 h-4 mr-2" />
+                Яндекс.Директ
+              </Button>
+            </Link>
+            <Link to="/admin/leads">
+              <Button variant="outline">
+                <Icon name="Users" className="w-4 h-4 mr-2" />
+                Заявки
+              </Button>
+            </Link>
             <Button onClick={saveData} className="bg-primary hover:bg-primary/90">
               <Icon name="Save" className="w-4 h-4 mr-2" />
               Сохранить изменения

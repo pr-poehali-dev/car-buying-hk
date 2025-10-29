@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -208,10 +209,18 @@ function DirectImport() {
           </CardContent>
         </Card>
 
-        <div className="mt-6 text-center">
-          <a href="/" className="text-primary hover:underline">
-            ← Вернуться на главную
-          </a>
+        <div className="mt-6 flex justify-center gap-4">
+          <Link to="/admin">
+            <Button variant="outline">
+              <Icon name="ArrowLeft" className="w-4 h-4 mr-2" />
+              Вернуться в админку
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button variant="ghost">
+              На главную
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
