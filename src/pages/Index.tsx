@@ -8,6 +8,16 @@ import Icon from '@/components/ui/icon';
 
 import FAQ from '@/components/FAQ';
 import { ExitIntentPopup } from '@/components/ExitIntentPopup';
+import { 
+  sanitizeInput, 
+  validatePhone, 
+  checkRateLimit, 
+  recordSubmission, 
+  validateFormTiming,
+  createHoneypot,
+  checkHoneypot,
+  validateFormData
+} from '@/utils/formSecurity';
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,6 +31,8 @@ function Index() {
     condition: '',
     phone: ''
   });
+  const [honeypot, setHoneypot] = useState('');
+  const [formOpenTime] = useState(Date.now());
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
@@ -155,13 +167,44 @@ function Index() {
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const cleanedPhone = evaluationForm.phone.replace(/\D/g, '');
+    if (!checkHoneypot(honeypot)) {
+      console.warn('Bot detected - honeypot filled');
+      return;
+    }
+    
+    if (!validateFormTiming(formOpenTime)) {
+      alert('Пожалуйста, заполните форму корректно');
+      return;
+    }
+    
+    if (!checkRateLimit()) {
+      alert('Вы отправили слишком много заявок. Пожалуйста, подождите или позвоните нам: +7 984 177 15 88');
+      return;
+    }
+    
+    const sanitizedData = {
+      phone: sanitizeInput(evaluationForm.phone),
+      brand: sanitizeInput(evaluationForm.brand),
+      model: sanitizeInput(evaluationForm.model),
+      year: sanitizeInput(evaluationForm.year),
+      city: sanitizeInput(evaluationForm.city),
+      condition: sanitizeInput(evaluationForm.condition)
+    };
+    
+    const validation = validateFormData(sanitizedData);
+    if (!validation.isValid) {
+      alert(validation.errors.join('\n'));
+      return;
+    }
+    
+    const cleanedPhone = sanitizedData.phone.replace(/\D/g, '');
     if (cleanedPhone.length !== 11) {
       alert('Пожалуйста, введите полный номер телефона (11 цифр)');
       return;
     }
-
-    await sendLeadToTelegram(evaluationForm.phone, 'form');
+    
+    recordSubmission();
+    await sendLeadToTelegram(sanitizedData.phone, 'form');
   };
 
   const isPhoneValid = () => {
@@ -518,6 +561,17 @@ function Index() {
                       required
                     />
                   </div>
+
+                  <input
+                    type="text"
+                    name="website_url"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                 </div>
 
                 <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all" disabled={!isPhoneValid()}>
