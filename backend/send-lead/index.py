@@ -134,6 +134,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 
 📞 Телефон клиента: {lead.phone}
 
+✅ Проверка: Капча пройдена (не робот)
 ⏰ Срочно свяжитесь с клиентом!'''
     
     # Send to Telegram
