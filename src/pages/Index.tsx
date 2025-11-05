@@ -132,6 +132,15 @@ function Index() {
       (window as any).ym(104279599, 'reachGoal', source === 'exit-intent' ? 'EXIT_INTENT_SUBMIT' : 'FORM_SUBMIT');
     }
     
+    // Google Ads conversion tracking
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-940602723/lead_conversion',
+        'value': 1.0,
+        'currency': 'RUB'
+      });
+    }
+    
     try {
       const leadData = source === 'exit-intent' 
         ? { phone: phoneNumber, source: 'exit-intent' }

@@ -40,6 +40,16 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
 
     setIsSubmitting(true);
     await onSubmit(phone);
+    
+    // Google Ads conversion tracking for exit intent
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'conversion', {
+        'send_to': 'AW-940602723/lead_conversion',
+        'value': 1.0,
+        'currency': 'RUB'
+      });
+    }
+    
     setIsSubmitting(false);
     setIsOpen(false);
     setRecaptchaToken(null);
