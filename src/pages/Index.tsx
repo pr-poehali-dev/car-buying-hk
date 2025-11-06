@@ -661,22 +661,22 @@ function Index() {
                 
                 {/* Yandex.Direct Extensions - Additional Value Props */}
                 <div className="mt-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
-                    <div className="flex flex-col items-center gap-1">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div className="flex flex-col items-center gap-1.5 p-2">
                       <Icon name="Clock" className="w-6 h-6 text-red-600" />
-                      <span className="text-xs font-semibold text-gray-800">За 15 минут</span>
+                      <span className="text-xs font-semibold text-gray-800 whitespace-nowrap">За 15 минут</span>
                     </div>
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-col items-center gap-1.5 p-2">
                       <Icon name="Wallet" className="w-6 h-6 text-red-600" />
-                      <span className="text-xs font-semibold text-gray-800">Деньги сразу</span>
+                      <span className="text-xs font-semibold text-gray-800 whitespace-nowrap">Деньги сразу</span>
                     </div>
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-col items-center gap-1.5 p-2">
                       <Icon name="MapPin" className="w-6 h-6 text-red-600" />
-                      <span className="text-xs font-semibold text-gray-800">По всему краю</span>
+                      <span className="text-xs font-semibold text-gray-800 whitespace-nowrap">По всему краю</span>
                     </div>
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-col items-center gap-1.5 p-2">
                       <Icon name="CheckCircle" className="w-6 h-6 text-red-600" />
-                      <span className="text-xs font-semibold text-gray-800">127 отзывов</span>
+                      <span className="text-xs font-semibold text-gray-800 whitespace-nowrap">127 отзывов</span>
                     </div>
                   </div>
                 </div>
