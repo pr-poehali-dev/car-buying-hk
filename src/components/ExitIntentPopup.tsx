@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ExitIntentPopupProps {
   onSubmit: (phone: string) => void;
@@ -14,8 +13,6 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
   const [phone, setPhone] = useState('');
   const [hasShown, setHasShown] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
@@ -32,11 +29,6 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phone.trim()) return;
-    
-    if (!recaptchaToken) {
-      alert('Пожалуйста, подтвердите что вы не робот');
-      return;
-    }
 
     setIsSubmitting(true);
     await onSubmit(phone);
@@ -52,8 +44,6 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
     
     setIsSubmitting(false);
     setIsOpen(false);
-    setRecaptchaToken(null);
-    recaptchaRef.current?.reset();
   };
 
   const formatPhone = (value: string) => {
@@ -97,20 +87,11 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
             />
           </div>
 
-          <div className="flex justify-center py-2">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey="6Lc6Tv0rAAAAABe1scODuYh2X_U2Zq4i0_YqHas0"
-              onChange={(token) => setRecaptchaToken(token)}
-              onExpired={() => setRecaptchaToken(null)}
-            />
-          </div>
-
           <div className="flex gap-3">
             <Button 
               type="submit" 
               className="flex-1 h-12 text-base"
-              disabled={isSubmitting || phone.length < 18 || !recaptchaToken}
+              disabled={isSubmitting || phone.length < 18}
             >
               {isSubmitting ? (
                 <>

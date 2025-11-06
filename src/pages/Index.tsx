@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 import FAQ from '@/components/FAQ';
 import { ExitIntentPopup } from '@/components/ExitIntentPopup';
@@ -34,8 +33,6 @@ function Index() {
   });
   const [honeypot, setHoneypot] = useState('');
   const [formOpenTime] = useState(Date.now());
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
@@ -179,11 +176,6 @@ function Index() {
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!recaptchaToken) {
-      alert('Пожалуйста, подтвердите что вы не робот');
-      return;
-    }
-    
     if (!checkHoneypot(honeypot)) {
       console.warn('Bot detected - honeypot filled');
       return;
@@ -222,10 +214,6 @@ function Index() {
     
     recordSubmission();
     await sendLeadToTelegram(sanitizedData.phone, 'form');
-    
-    // Reset captcha after successful submission
-    setRecaptchaToken(null);
-    recaptchaRef.current?.reset();
   };
 
   const isPhoneValid = () => {
@@ -595,16 +583,7 @@ function Index() {
                   />
                 </div>
 
-                <div className="flex justify-center">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey="6Lc6Tv0rAAAAABe1scODuYh2X_U2Zq4i0_YqHas0"
-                    onChange={(token) => setRecaptchaToken(token)}
-                    onExpired={() => setRecaptchaToken(null)}
-                  />
-                </div>
-
-                <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all" disabled={!isPhoneValid() || !recaptchaToken}>
+                <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-7 shadow-lg hover:shadow-xl transition-all" disabled={!isPhoneValid()}>
                   <Icon name="Phone" className="w-5 h-5 mr-2" />
                   ОТПРАВИТЬ ЗАЯВКУ — перезвоним за 30 секунд
                 </Button>
