@@ -19,6 +19,8 @@ import SrochnyyVykup from "./pages/SrochnyyVykup";
 import DirectImport from "./pages/DirectImport";
 import Calculator from "./pages/Calculator";
 import EvaluationPopup from "./components/EvaluationPopup";
+import { CityPage } from "./components/CityPage";
+import { getCityById } from "./data/cities";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +47,12 @@ const App = () => (
         <RedirectHandler />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/khabarovsk" element={<CityPage city={getCityById('khabarovsk')} />} />
+          <Route path="/komsomolsk" element={<CityPage city={getCityById('komsomolsk')} />} />
+          <Route path="/amursk" element={<CityPage city={getCityById('amursk')} />} />
+          <Route path="/sovetskaya-gavan" element={<CityPage city={getCityById('sovetskaya-gavan')} />} />
+          <Route path="/bikin" element={<CityPage city={getCityById('bikin')} />} />
+          <Route path="/vyazemsky" element={<CityPage city={getCityById('vyazemsky')} />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/leads" element={<LeadsAdmin />} />
           <Route path="/blog" element={<Blog />} />

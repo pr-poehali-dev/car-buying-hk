@@ -18,8 +18,14 @@ import {
   checkHoneypot,
   validateFormData
 } from '@/utils/formSecurity';
+import { CityData, getCityById, defaultCity } from '@/data/cities';
 
-function Index() {
+interface IndexProps {
+  city?: CityData;
+}
+
+function Index({ city: cityProp }: IndexProps = {}) {
+  const city = cityProp || getCityById(defaultCity);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
@@ -347,7 +353,7 @@ function Index() {
                   🔥 АКЦИЯ! +10 000₽ к цене + бесплатная эвакуация
                 </Badge>
                 <h1 className="font-roboto font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
-                  <span className="text-primary">№1 в Хабаровске:</span> выкуп авто за<span className="text-primary"> 15 минут</span>
+                  <span className="text-primary">№1 в {city.namePrepositional}:</span> выкуп авто за<span className="text-primary"> 15 минут</span>
                 </h1>
                 <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   💰 <strong>Покупаем на 15% дороже конкурентов</strong> — любые автомобили: легковые, грузовые, битые, кредитные, без документов. <span className="text-primary font-semibold">Деньги сразу на карту или наличными.</span>
@@ -1277,7 +1283,7 @@ function Index() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Адрес</div>
-                      <div className="text-lg">Хабаровск и Хабаровский край</div>
+                      <div className="text-lg">{city.name} и {city.region}</div>
                       <div className="text-sm text-gray-400">Выезжаем во все районы</div>
                     </div>
                   </div>
@@ -1288,7 +1294,7 @@ function Index() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Режим работы</div>
-                      <div className="text-lg">Пн-Вс: 08:00 - 20:00</div>
+                      <div className="text-lg">{city.workingHours}</div>
                       <div className="text-sm text-gray-400">Звонки принимаем круглосуточно</div>
                     </div>
                   </div>
