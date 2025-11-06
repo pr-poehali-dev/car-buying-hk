@@ -347,7 +347,7 @@ function Index() {
                   🔥 АКЦИЯ! +10 000₽ к цене + бесплатная эвакуация
                 </Badge>
                 <h1 className="font-roboto font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
-                  <span className="text-primary">№1 в Хабаровске:</span> выкуп авто за<span className="text-primary"> 15 минут</span>
+                  <span className="text-primary">№1 в Комсомольске-на-Амуре:</span> выкуп авто за<span className="text-primary"> 15 минут</span>
                 </h1>
                 <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   💰 <strong>Покупаем на 15% дороже конкурентов</strong> — любые автомобили: легковые, грузовые, битые, кредитные, без документов. <span className="text-primary font-semibold">Деньги сразу на карту или наличными.</span>
@@ -1277,8 +1277,8 @@ function Index() {
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">Адрес</div>
-                      <div className="text-lg">Хабаровск и Хабаровский край</div>
-                      <div className="text-sm text-gray-400">Выезжаем во все районы</div>
+                      <div className="text-lg">Комсомольск-на-Амуре и район</div>
+                      <div className="text-sm text-gray-400">Выезжаем по всему городу и области</div>
                     </div>
                   </div>
 
