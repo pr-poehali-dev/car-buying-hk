@@ -428,7 +428,7 @@ function Index() {
                       </div>
                       <div className="flex items-center gap-1.5 text-gray-700">
                         <Icon name="Check" className="w-3 h-3 text-green-600" />
-                        <span>127+ довольных клиентов</span>
+                        <span>127+ довольных клиента</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-gray-700">
                         <Icon name="Check" className="w-3 h-3 text-green-600" />
@@ -672,7 +672,7 @@ function Index() {
                     </div>
                     <div className="flex flex-col items-center gap-1">
                       <Icon name="MapPin" className="w-6 h-6 text-red-600" />
-                      <span className="text-xs font-semibold text-gray-800">Весь Хабаровск</span>
+                      <span className="text-xs font-semibold text-gray-800">По всему краю</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
                       <Icon name="CheckCircle" className="w-6 h-6 text-red-600" />
