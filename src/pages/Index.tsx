@@ -352,6 +352,38 @@ function Index() {
                 <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed">
                   Покупаем любые автомобили: легковые, грузовые, битые, кредитные, без документов. Честная оценка, деньги сразу, выезд в любой район.
                 </p>
+                
+                {/* Yandex.Direct Quick Links */}
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <a href="#services" className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-all shadow-sm hover:shadow-md group">
+                    <Icon name="Car" className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <div>
+                      <div className="font-semibold text-sm text-gray-900">Выкуп легковых</div>
+                      <div className="text-xs text-gray-600">От 50 000₽</div>
+                    </div>
+                  </a>
+                  <a href="#services" className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-all shadow-sm hover:shadow-md group">
+                    <Icon name="AlertCircle" className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <div>
+                      <div className="font-semibold text-sm text-gray-900">Битые авто</div>
+                      <div className="text-xs text-gray-600">Любое состояние</div>
+                    </div>
+                  </a>
+                  <a href="#services" className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-all shadow-sm hover:shadow-md group">
+                    <Icon name="CreditCard" className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <div>
+                      <div className="font-semibold text-sm text-gray-900">В кредите</div>
+                      <div className="text-xs text-gray-600">Поможем закрыть</div>
+                    </div>
+                  </a>
+                  <a href="#services" className="flex items-center gap-2 p-3 bg-white rounded-lg border border-gray-200 hover:border-primary transition-all shadow-sm hover:shadow-md group">
+                    <Icon name="FileX" className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
+                    <div>
+                      <div className="font-semibold text-sm text-gray-900">Без документов</div>
+                      <div className="text-xs text-gray-600">Решим вопрос</div>
+                    </div>
+                  </a>
+                </div>
               </div>
 
               <Card className="p-4 sm:p-6 bg-white shadow-2xl border-2 border-primary">
@@ -385,6 +417,28 @@ function Index() {
                   <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
                     <Icon name="Shield" className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                     <span>Данные защищены • Без спама</span>
+                  </div>
+                  
+                  {/* Yandex.Direct Callouts */}
+                  <div className="pt-3 border-t border-gray-100">
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <Icon name="Check" className="w-3 h-3 text-green-600" />
+                        <span>Работаем с 2015 года</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <Icon name="Check" className="w-3 h-3 text-green-600" />
+                        <span>127+ довольных клиентов</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <Icon name="Check" className="w-3 h-3 text-green-600" />
+                        <span>Выезд по краю</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-gray-700">
+                        <Icon name="Check" className="w-3 h-3 text-green-600" />
+                        <span>Снятие с учёта</span>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -601,6 +655,28 @@ function Index() {
                     <div className="flex flex-col items-center gap-2">
                       <Icon name="TrendingUp" className="w-8 h-8 text-green-600" />
                       <span className="text-xs md:text-sm text-gray-600 font-medium">Лучшая цена на рынке</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Yandex.Direct Extensions - Additional Value Props */}
+                <div className="mt-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="Clock" className="w-6 h-6 text-red-600" />
+                      <span className="text-xs font-semibold text-gray-800">За 15 минут</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="Wallet" className="w-6 h-6 text-red-600" />
+                      <span className="text-xs font-semibold text-gray-800">Деньги сразу</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="MapPin" className="w-6 h-6 text-red-600" />
+                      <span className="text-xs font-semibold text-gray-800">Весь Хабаровск</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon name="CheckCircle" className="w-6 h-6 text-red-600" />
+                      <span className="text-xs font-semibold text-gray-800">127 отзывов</span>
                     </div>
                   </div>
                 </div>
