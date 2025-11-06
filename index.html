@@ -23,6 +23,21 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="apple-mobile-web-app-title" content="АвтоВыкуп27"/>
     
+    <!-- Extended Advertising Meta Tags -->
+    <meta property="business:contact_data:street_address" content="Хабаровск"/>
+    <meta property="business:contact_data:locality" content="Хабаровск"/>
+    <meta property="business:contact_data:region" content="Хабаровский край"/>
+    <meta property="business:contact_data:postal_code" content="680000"/>
+    <meta property="business:contact_data:country_name" content="Россия"/>
+    <meta property="business:hours:day" content="monday" />
+    <meta property="business:hours:start" content="08:00" />
+    <meta property="business:hours:end" content="20:00" />
+    <meta name="price_range" content="50000-5000000 RUB"/>
+    <meta name="availability" content="instock"/>
+    <meta name="condition" content="new"/>
+    <meta name="identifier" content="avtovykup-khabarovsk"/>
+    <meta name="category" content="Automotive Services"/>
+    
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN"/>
@@ -41,25 +56,70 @@
       gtag('config', 'AW-940602723');
     </script>
     
-    <!-- Yandex.Direct Extensions -->
+    <!-- Yandex.Direct & Google Ads Extensions -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Product",
       "name": "Срочный выкуп автомобилей Хабаровск",
       "description": "Выкупаем авто за 15 минут. Любое состояние: битые, кредитные, без документов. Честная оценка + деньги сразу",
+      "brand": {
+        "@type": "Brand",
+        "name": "АвтоВыкуп27"
+      },
       "offers": {
         "@type": "AggregateOffer",
         "priceCurrency": "RUB",
         "lowPrice": "50000",
         "highPrice": "5000000",
-        "offerCount": "500"
+        "offerCount": "500",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "АвтоВыкуп Хабаровск"
+        }
       },
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
-        "reviewCount": "127"
+        "reviewCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
       }
+    }
+    </script>
+    
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как быстро можно продать машину?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Выкуп автомобиля занимает всего 15 минут. Мы приезжаем, оцениваем авто на месте и выплачиваем деньги сразу наличными или переводом."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие автомобили вы выкупаете?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Мы покупаем любые автомобили: легковые, грузовые, битые, кредитные, без документов, после ДТП, не на ходу. Выкупаем японские и корейские авто."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "В каких городах работаете?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Работаем по всему Хабаровскому краю: Хабаровск, Комсомольск-на-Амуре, Амурск, Советская Гавань, Бикин, Вяземский и другие районы."
+          }
+        }
+      ]
     }
     </script>
     
