@@ -2,7 +2,7 @@
  * Analytics tracking utilities for Yandex.Metrika and Google Ads
  */
 
-const YM_COUNTER_ID = 98765432;
+const YM_COUNTER_ID = 104279599;
 const GA_CONVERSION_ID = 'AW-940602723';
 
 declare global {
