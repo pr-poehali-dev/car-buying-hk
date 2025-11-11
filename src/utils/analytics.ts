@@ -34,12 +34,12 @@ export const trackPhoneClick = () => {
 };
 
 export const trackFormSubmit = () => {
-  trackYandexGoal('LEAD_FORM');
+  trackYandexGoal('FORM_SUBMIT');
   trackGoogleConversion('lead_conversion');
 };
 
 export const trackExitIntent = () => {
-  trackYandexGoal('LEAD_EXIT_INTENT');
+  trackYandexGoal('FORM_SUBMIT');
   trackGoogleConversion('lead_conversion');
 };
 
