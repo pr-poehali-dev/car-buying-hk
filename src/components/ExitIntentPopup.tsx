@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
+import { trackExitIntent } from '@/utils/analytics';
 
 interface ExitIntentPopupProps {
   onSubmit: (phone: string) => void;
@@ -31,16 +32,11 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
     if (!phone.trim()) return;
 
     setIsSubmitting(true);
-    await onSubmit(phone);
     
-    // Google Ads conversion tracking for exit intent
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-940602723/lead_conversion',
-        'value': 1.0,
-        'currency': 'RUB'
-      });
-    }
+    // Track exit intent conversion
+    trackExitIntent();
+    
+    await onSubmit(phone);
     
     setIsSubmitting(false);
     setIsOpen(false);

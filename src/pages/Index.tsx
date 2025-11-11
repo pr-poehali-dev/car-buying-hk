@@ -19,6 +19,7 @@ import {
   validateFormData
 } from '@/utils/formSecurity';
 import { CityData, getCityById, defaultCity } from '@/data/cities';
+import { trackFormSubmit, trackPhoneClick } from '@/utils/analytics';
 
 interface IndexProps {
   city?: CityData;
@@ -130,19 +131,8 @@ function Index({ city: cityProp }: IndexProps = {}) {
   };
 
   const sendLeadToTelegram = async (phoneNumber: string, source: string = 'form') => {
-    // Yandex Metrika goal tracking
-    if (typeof window !== 'undefined' && (window as any).ym) {
-      (window as any).ym(104279599, 'reachGoal', source === 'exit-intent' ? 'EXIT_INTENT_SUBMIT' : 'FORM_SUBMIT');
-    }
-    
-    // Google Ads conversion tracking
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'conversion', {
-        'send_to': 'AW-940602723/lead_conversion',
-        'value': 1.0,
-        'currency': 'RUB'
-      });
-    }
+    // Track conversion
+    trackFormSubmit();
     
     try {
       const leadData = source === 'exit-intent' 
@@ -274,11 +264,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
               <a 
                 href="tel:+79841771588" 
                 className="text-primary hover:text-primary/80 font-bold text-lg transition-colors flex items-center gap-2"
-                onClick={() => {
-                  if (typeof window !== 'undefined' && (window as any).ym) {
-                    (window as any).ym(104279599, 'reachGoal', 'PHONE_CLICK');
-                  }
-                }}
+                onClick={trackPhoneClick}
               >
                 <Icon name="Phone" className="w-5 h-5" />
                 +7 984 177-15-88
