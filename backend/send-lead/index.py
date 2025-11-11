@@ -79,10 +79,32 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         try:
             conn = psycopg2.connect(database_url)
             cur = conn.cursor()
-            cur.execute(
-                "INSERT INTO leads (phone, city, source, utm_source, utm_medium, utm_campaign, form_type) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id",
-                (lead.phone, lead.city, lead.source, lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.form_type)
-            )
+            
+            # Escape single quotes for Simple Query Protocol
+            phone_escaped = lead.phone.replace("'", "''")
+            city_escaped = (lead.city or 'null').replace("'", "''") if lead.city else 'null'
+            source_escaped = (lead.source or 'null').replace("'", "''") if lead.source else 'null'
+            utm_source_escaped = (lead.utm_source or 'null').replace("'", "''") if lead.utm_source else 'null'
+            utm_medium_escaped = (lead.utm_medium or 'null').replace("'", "''") if lead.utm_medium else 'null'
+            utm_campaign_escaped = (lead.utm_campaign or 'null').replace("'", "''") if lead.utm_campaign else 'null'
+            form_type_escaped = (lead.form_type or 'null').replace("'", "''") if lead.form_type else 'null'
+            
+            # Build query with proper NULL handling for Simple Query Protocol
+            city_value = f"'{city_escaped}'" if lead.city else 'NULL'
+            source_value = f"'{source_escaped}'" if lead.source else 'NULL'
+            utm_source_value = f"'{utm_source_escaped}'" if lead.utm_source else 'NULL'
+            utm_medium_value = f"'{utm_medium_escaped}'" if lead.utm_medium else 'NULL'
+            utm_campaign_value = f"'{utm_campaign_escaped}'" if lead.utm_campaign else 'NULL'
+            form_type_value = f"'{form_type_escaped}'" if lead.form_type else 'NULL'
+            
+            query = f"""
+                INSERT INTO t_p15928011_car_buying_hk.leads 
+                (phone, city, source, utm_source, utm_medium, utm_campaign, form_type) 
+                VALUES ('{phone_escaped}', {city_value}, {source_value}, {utm_source_value}, {utm_medium_value}, {utm_campaign_value}, {form_type_value}) 
+                RETURNING id
+            """
+            
+            cur.execute(query)
             lead_id = cur.fetchone()[0]
             conn.commit()
             cur.close()
