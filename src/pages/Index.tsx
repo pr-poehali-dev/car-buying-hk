@@ -131,13 +131,14 @@ function Index({ city: cityProp }: IndexProps = {}) {
   };
 
   const sendLeadToTelegram = async (phoneNumber: string, source: string = 'form') => {
-    // Track conversion
     trackFormSubmit();
     
     try {
       const leadData = source === 'exit-intent' 
         ? { phone: phoneNumber, source: 'exit-intent' }
         : evaluationForm;
+
+      console.log('Sending lead to backend...', leadData);
 
       const response = await fetch('https://functions.poehali.dev/d96ee797-612a-46f2-b934-ed038b121758', {
         method: 'POST',
@@ -147,9 +148,16 @@ function Index({ city: cityProp }: IndexProps = {}) {
         body: JSON.stringify(leadData)
       });
 
+      console.log('Backend response status:', response.status);
+
       if (!response.ok) {
-        throw new Error('Failed to send lead');
+        const errorText = await response.text();
+        console.error('Backend error:', errorText);
+        throw new Error(`Failed to send lead: ${response.status}`);
       }
+
+      const responseData = await response.json();
+      console.log('Backend response data:', responseData);
 
       alert('Ваша заявка отправлена! Дождитесь звонка от специалиста. Мы свяжемся с вами в течение 15 минут.');
       
@@ -164,13 +172,15 @@ function Index({ city: cityProp }: IndexProps = {}) {
         });
       }
     } catch (error) {
-      alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам: +7 984 177 15 88');
       console.error('Error sending lead:', error);
+      alert('Произошла ошибка при отправке заявки. Пожалуйста, позвоните нам: +7 984 177 15 88');
     }
   };
 
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log('Form submitted', { evaluationForm });
     
     if (!checkHoneypot(honeypot)) {
       console.warn('Bot detected - honeypot filled');
@@ -178,12 +188,14 @@ function Index({ city: cityProp }: IndexProps = {}) {
     }
     
     if (!validateFormTiming(formOpenTime)) {
-      alert('Пожалуйста, заполните форму корректно');
+      console.warn('Form timing validation failed');
+      alert('Пожалуйста, подождите несколько секунд перед отправкой');
       return;
     }
     
     if (!checkRateLimit()) {
-      alert('Вы отправили слишком много заявок. Пожалуйста, подождите или позвоните нам: +7 984 177 15 88');
+      console.warn('Rate limit exceeded');
+      alert('Вы отправили максимальное количество заявок. Позвоните нам: +7 984 177 15 88');
       return;
     }
     
@@ -196,18 +208,24 @@ function Index({ city: cityProp }: IndexProps = {}) {
       condition: sanitizeInput(evaluationForm.condition)
     };
     
+    console.log('Sanitized data', sanitizedData);
+    
     const validation = validateFormData(sanitizedData);
     if (!validation.isValid) {
-      alert(validation.errors.join('\n'));
+      console.warn('Validation failed', validation.errors);
+      alert('Ошибка валидации:\n' + validation.errors.join('\n'));
       return;
     }
     
     const cleanedPhone = sanitizedData.phone.replace(/\D/g, '');
-    if (cleanedPhone.length !== 11) {
-      alert('Пожалуйста, введите полный номер телефона (11 цифр)');
+    console.log('Cleaned phone', cleanedPhone, 'length:', cleanedPhone.length);
+    
+    if (cleanedPhone.length < 10 || cleanedPhone.length > 11) {
+      alert('Пожалуйста, введите корректный номер телефона');
       return;
     }
     
+    console.log('All validations passed, sending lead...');
     recordSubmission();
     await sendLeadToTelegram(sanitizedData.phone, 'form');
   };

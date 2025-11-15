@@ -2,7 +2,7 @@ const HONEYPOT_FIELD = 'website_url';
 const MIN_SUBMIT_TIME = 3000;
 const MAX_SUBMIT_TIME = 600000;
 const RATE_LIMIT_STORAGE_KEY = 'form_submissions';
-const MAX_SUBMISSIONS_PER_HOUR = 3;
+const MAX_SUBMISSIONS_PER_HOUR = 10;
 
 interface FormSubmissionRecord {
   timestamp: number;
@@ -21,15 +21,12 @@ export const sanitizeInput = (input: string): string => {
 export const validatePhone = (phone: string): boolean => {
   const cleaned = phone.replace(/\D/g, '');
   
-  if (cleaned.length !== 11) return false;
+  if (cleaned.length < 10 || cleaned.length > 11) return false;
   
-  if (!cleaned.startsWith('7') && !cleaned.startsWith('8')) return false;
+  if (cleaned.length === 11 && !cleaned.startsWith('7') && !cleaned.startsWith('8')) return false;
   
-  const repeatingPattern = /^(\d)\1{10}$/;
+  const repeatingPattern = /^(\d)\1+$/;
   if (repeatingPattern.test(cleaned)) return false;
-  
-  const invalidPrefixes = ['7000', '7111', '7222', '7999'];
-  if (invalidPrefixes.some(prefix => cleaned.startsWith(prefix))) return false;
   
   return true;
 };
@@ -76,11 +73,7 @@ export const validateFormTiming = (formOpenTime: number): boolean => {
     return false;
   }
   
-  if (submitTime > MAX_SUBMIT_TIME) {
-    console.warn('Form open too long - session may be stale');
-    return false;
-  }
-  
+  // Remove max time check - allow any time for legitimate users
   return true;
 };
 
