@@ -356,11 +356,16 @@ function Index({ city: cityProp }: IndexProps = {}) {
                   <Icon name="Flame" className="w-3 h-3 sm:w-4 sm:h-4 mr-1 inline" />
                   🔥 АКЦИЯ! +10 000₽ к цене + бесплатная эвакуация
                 </Badge>
-                <h1 className="font-roboto font-bold text-2xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
-                  <span className="text-primary">№1 в {city.namePrepositional}:</span> выкуп авто за<span className="text-primary"> 15 минут</span>
+                <h1 className="font-roboto font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
+                  Выкуп авто <span className="text-primary">на 15% дороже</span> в {city.namePrepositional}
                 </h1>
-                <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed">
-                  💰 <strong>Покупаем на 15% дороже конкурентов</strong> — любые автомобили: легковые, грузовые, битые, кредитные, без документов. <span className="text-primary font-semibold">Деньги сразу на карту или наличными.</span>
+                <p className="text-lg sm:text-xl lg:text-2xl text-gray-800 leading-snug font-semibold">
+                  💸 <span className="text-primary">Деньги за 15 минут</span> — битые, кредитные, без документов
+                </p>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  ✅ <strong>Бесплатная оценка и выезд</strong><br/>
+                  ✅ <strong>Оплата сразу:</strong> наличными или на карту<br/>
+                  ✅ <strong>Берём любые авто:</strong> легковые, грузовые, без пробега по РФ
                 </p>
                 
                 {/* Yandex.Direct Quick Links */}
