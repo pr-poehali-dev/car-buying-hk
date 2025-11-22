@@ -416,17 +416,17 @@ function Index({ city: cityProp }: IndexProps = {}) {
                     value={evaluationForm.phone}
                     onChange={handlePhoneChange}
                     maxLength={18}
-                    className="h-12 sm:h-14 text-base sm:text-lg text-center"
+                    className="h-16 sm:h-14 text-xl sm:text-lg text-center font-semibold"
                   />
                   
                   <Button 
                     onClick={handleEvaluationSubmit}
                     size="lg" 
-                    className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-base sm:text-lg py-6 sm:py-7 shadow-lg animate-pulse"
+                    className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white text-lg sm:text-lg py-8 sm:py-7 shadow-lg animate-pulse font-bold"
                     disabled={!isPhoneValid()}
                   >
-                    <Icon name="Phone" className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                    💰 УЗНАТЬ ЦЕНУ МОЕГО АВТО
+                    <Icon name="Phone" className="w-6 h-6 sm:w-5 sm:h-5 mr-2" />
+                    💰 УЗНАТЬ ЦЕНУ
                   </Button>
                   
                   <div className="relative">
@@ -442,10 +442,10 @@ function Index({ city: cityProp }: IndexProps = {}) {
                     <Button 
                       size="lg" 
                       variant="outline"
-                      className="w-full border-2 border-green-600 text-green-700 hover:bg-green-50 text-base sm:text-lg py-6 sm:py-7 font-bold shadow-lg hover:shadow-xl transition-all"
+                      className="w-full border-3 border-green-600 bg-green-50 text-green-700 hover:bg-green-100 text-xl sm:text-lg py-8 sm:py-7 font-bold shadow-lg hover:shadow-xl transition-all"
                     >
-                      <Icon name="Phone" className="w-5 h-5 sm:w-6 sm:h-6 mr-2 animate-pulse" />
-                      📞 ПОЗВОНИТЬ СЕЙЧАС
+                      <Icon name="Phone" className="w-7 h-7 sm:w-6 sm:h-6 mr-2 animate-pulse" />
+                      📞 ПОЗВОНИТЬ
                     </Button>
                   </a>
 
@@ -1429,30 +1429,40 @@ function Index({ city: cityProp }: IndexProps = {}) {
       {/* Exit Intent Popup */}
       <ExitIntentPopup onSubmit={handleExitIntentSubmit} />
 
-      {/* Sticky Bottom CTA Button */}
+      {/* Sticky Bottom CTA Button - Mobile Optimized */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-red-600 to-secondary shadow-2xl border-t-4 border-yellow-400 animate-in slide-in-from-bottom duration-500">
-        <div className="max-w-7xl mx-auto px-4 py-3 md:py-4">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
-                <Icon name="TrendingUp" className="w-5 h-5 text-yellow-300 animate-pulse flex-shrink-0" />
-                <p className="text-white font-bold text-sm md:text-base truncate">
-                  🔥 Оценка +15% выше рынка • Деньги за 15 минут
-                </p>
-              </div>
-              <p className="text-white/90 text-xs md:text-sm">
+        <div className="max-w-7xl mx-auto px-3 py-4 md:py-4">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-4">
+            <div className="flex-1 text-center md:text-left">
+              <p className="text-white font-bold text-base md:text-base mb-1">
+                🔥 Оценка +15% • Деньги за 15 минут
+              </p>
+              <p className="text-white/90 text-sm md:text-sm hidden md:block">
                 Оставьте телефон → Перезвоним за 30 сек
               </p>
             </div>
-            <a href="#evaluation" className="flex-shrink-0">
-              <Button 
-                size="lg"
-                className="bg-white text-primary hover:bg-yellow-50 font-bold shadow-xl hover:shadow-2xl transition-all hover:scale-105 text-sm md:text-base px-4 md:px-8 py-3 md:py-6"
-              >
-                <Icon name="Phone" className="w-4 h-4 md:w-5 md:h-5 mr-2 animate-pulse" />
-                УЗНАТЬ ЦЕНУ
-              </Button>
-            </a>
+            <div className="grid grid-cols-2 gap-2 md:flex md:gap-3">
+              <a href="#evaluation" className="flex-1 md:flex-initial">
+                <Button 
+                  size="lg"
+                  className="w-full bg-white text-primary hover:bg-yellow-50 font-bold shadow-xl hover:shadow-2xl transition-all text-base md:text-base px-4 md:px-6 py-4 md:py-6"
+                >
+                  <Icon name="Calculator" className="w-5 h-5 md:w-5 md:h-5 mr-1 md:mr-2" />
+                  <span className="hidden sm:inline">УЗНАТЬ ЦЕНУ</span>
+                  <span className="sm:hidden">ЦЕНА</span>
+                </Button>
+              </a>
+              <a href="tel:+79841771588" onClick={trackPhoneClick} className="flex-1 md:flex-initial">
+                <Button 
+                  size="lg"
+                  className="w-full bg-green-500 text-white hover:bg-green-600 font-bold shadow-xl hover:shadow-2xl transition-all text-base md:text-base px-4 md:px-6 py-4 md:py-6"
+                >
+                  <Icon name="Phone" className="w-5 h-5 md:w-5 md:h-5 mr-1 md:mr-2 animate-pulse" />
+                  <span className="hidden sm:inline">ПОЗВОНИТЬ</span>
+                  <span className="sm:hidden">ЗВОНОК</span>
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
