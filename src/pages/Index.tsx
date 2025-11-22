@@ -1419,7 +1419,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-primary hover:bg-primary/90 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
+          className="fixed bottom-24 right-6 md:bottom-28 md:right-8 bg-primary hover:bg-primary/90 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
           aria-label="Наверх"
         >
           <Icon name="ArrowUp" className="w-5 h-5 md:w-6 md:h-6" />
@@ -1428,6 +1428,34 @@ function Index({ city: cityProp }: IndexProps = {}) {
 
       {/* Exit Intent Popup */}
       <ExitIntentPopup onSubmit={handleExitIntentSubmit} />
+
+      {/* Sticky Bottom CTA Button */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-red-600 to-secondary shadow-2xl border-t-4 border-yellow-400 animate-in slide-in-from-bottom duration-500">
+        <div className="max-w-7xl mx-auto px-4 py-3 md:py-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1">
+                <Icon name="TrendingUp" className="w-5 h-5 text-yellow-300 animate-pulse flex-shrink-0" />
+                <p className="text-white font-bold text-sm md:text-base truncate">
+                  🔥 Оценка +15% выше рынка • Деньги за 15 минут
+                </p>
+              </div>
+              <p className="text-white/90 text-xs md:text-sm">
+                Оставьте телефон → Перезвоним за 30 сек
+              </p>
+            </div>
+            <a href="#evaluation" className="flex-shrink-0">
+              <Button 
+                size="lg"
+                className="bg-white text-primary hover:bg-yellow-50 font-bold shadow-xl hover:shadow-2xl transition-all hover:scale-105 text-sm md:text-base px-4 md:px-8 py-3 md:py-6"
+              >
+                <Icon name="Phone" className="w-4 h-4 md:w-5 md:h-5 mr-2 animate-pulse" />
+                УЗНАТЬ ЦЕНУ
+              </Button>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
