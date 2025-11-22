@@ -13,7 +13,7 @@ const EvaluationPopup = () => {
     if (!hasSeenPopup) {
       const timer = setTimeout(() => {
         setIsVisible(true);
-      }, 30000);
+      }, 8000);
 
       return () => clearTimeout(timer);
     }
@@ -114,7 +114,7 @@ const EvaluationPopup = () => {
 
         <div className="bg-gray-50 px-8 py-4 rounded-b-2xl border-t">
           <p className="text-xs text-gray-500 text-center">
-            🎁 Специальное предложение действует до конца месяца
+            🔥 СЕГОДНЯ: Оценка +15% выше рыночной цены!
           </p>
         </div>
       </div>

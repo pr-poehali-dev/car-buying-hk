@@ -332,7 +332,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
           <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-center">
             <div className="flex items-center gap-2">
               <Icon name="Zap" className="w-5 h-5 md:w-6 md:h-6 animate-pulse" />
-              <span className="font-bold text-base md:text-xl">🎁 СУПЕР-АКЦИЯ: +10 000₽ к цене + БЕСПЛАТНАЯ эвакуация!</span>
+              <span className="font-bold text-base md:text-xl">🔥 СЕГОДНЯ: Оценка +15% выше рынка + БЕСПЛАТНАЯ эвакуация!</span>
             </div>
             <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 md:px-4 py-1.5 md:py-2 rounded-full">
               <Icon name="Clock" className="w-4 h-4 md:w-5 md:h-5" />
@@ -354,7 +354,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
               <div className="space-y-3 sm:space-y-4">
                 <Badge className="bg-red-600 text-white text-sm sm:text-base px-3 sm:px-4 py-1.5 sm:py-2 animate-pulse">
                   <Icon name="Flame" className="w-3 h-3 sm:w-4 sm:h-4 mr-1 inline" />
-                  🔥 АКЦИЯ! +10 000₽ к цене + бесплатная эвакуация
+                  🔥 СЕГОДНЯ: Оценка +15% выше рынка!
                 </Badge>
                 <h1 className="font-roboto font-bold text-3xl sm:text-4xl lg:text-5xl text-gray-900 leading-tight">
                   Выкуп авто <span className="text-primary">на 15% дороже</span> в {city.namePrepositional}
@@ -428,6 +428,26 @@ function Index({ city: cityProp }: IndexProps = {}) {
                     <Icon name="Phone" className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     💰 УЗНАТЬ ЦЕНУ МОЕГО АВТО
                   </Button>
+                  
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-200"></div>
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                      <span className="bg-white px-2 text-gray-500">или</span>
+                    </div>
+                  </div>
+                  
+                  <a href="tel:+79841771588" onClick={trackPhoneClick}>
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="w-full border-2 border-green-600 text-green-700 hover:bg-green-50 text-base sm:text-lg py-6 sm:py-7 font-bold shadow-lg hover:shadow-xl transition-all"
+                    >
+                      <Icon name="Phone" className="w-5 h-5 sm:w-6 sm:h-6 mr-2 animate-pulse" />
+                      📞 ПОЗВОНИТЬ СЕЙЧАС
+                    </Button>
+                  </a>
 
                   <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
                     <Icon name="Shield" className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />

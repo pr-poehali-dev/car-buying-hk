@@ -23,8 +23,21 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
       }
     };
 
+    const handleScroll = () => {
+      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercentage >= 70 && !hasShown) {
+        setIsOpen(true);
+        setHasShown(true);
+      }
+    };
+
     document.addEventListener('mouseleave', handleMouseLeave);
-    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [hasShown]);
 
   const handleSubmit = async (e: React.FormEvent) => {
