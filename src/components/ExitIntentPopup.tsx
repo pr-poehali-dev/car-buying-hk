@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 import { trackExitIntent } from '@/utils/analytics';
+import { vibrateButton, vibrateSuccess } from '@/utils/haptics';
 
 interface ExitIntentPopupProps {
   onSubmit: (phone: string) => void;
@@ -44,6 +45,7 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
     e.preventDefault();
     if (!phone.trim()) return;
 
+    vibrateButton();
     setIsSubmitting(true);
     
     // Track exit intent conversion
@@ -51,6 +53,7 @@ export function ExitIntentPopup({ onSubmit }: ExitIntentPopupProps) {
     
     await onSubmit(phone);
     
+    vibrateSuccess();
     setIsSubmitting(false);
     setIsOpen(false);
   };

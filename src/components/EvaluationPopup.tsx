@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { vibrateButton } from '@/utils/haptics';
 
 const EvaluationPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,12 +21,14 @@ const EvaluationPopup = () => {
   }, []);
 
   const handleClose = () => {
+    vibrateButton();
     setIsClosed(true);
     sessionStorage.setItem('hasSeenEvaluationPopup', 'true');
     setTimeout(() => setIsVisible(false), 300);
   };
 
   const handleAction = () => {
+    vibrateButton();
     sessionStorage.setItem('hasSeenEvaluationPopup', 'true');
     setIsClosed(true);
     setTimeout(() => setIsVisible(false), 300);

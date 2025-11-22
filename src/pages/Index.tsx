@@ -20,6 +20,7 @@ import {
 } from '@/utils/formSecurity';
 import { CityData, getCityById, defaultCity } from '@/data/cities';
 import { trackFormSubmit, trackPhoneClick } from '@/utils/analytics';
+import { vibrateButton, vibrateSuccess } from '@/utils/haptics';
 
 interface IndexProps {
   city?: CityData;
@@ -159,6 +160,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
       const responseData = await response.json();
       console.log('Backend response data:', responseData);
 
+      vibrateSuccess();
       alert('Ваша заявка отправлена! Дождитесь звонка от специалиста. Мы свяжемся с вами в течение 15 минут.');
       
       if (source === 'form') {
@@ -179,6 +181,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
 
   const handleEvaluationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    vibrateButton();
     
     console.log('Form submitted', { evaluationForm });
     
@@ -438,7 +441,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
                     </div>
                   </div>
                   
-                  <a href="tel:+79841771588" onClick={trackPhoneClick}>
+                  <a href="tel:+79841771588" onClick={(e) => { vibrateButton(); trackPhoneClick(); }}>
                     <Button 
                       size="lg" 
                       variant="outline"
@@ -1442,7 +1445,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
               </p>
             </div>
             <div className="grid grid-cols-2 gap-2 md:flex md:gap-3">
-              <a href="#evaluation" className="flex-1 md:flex-initial">
+              <a href="#evaluation" onClick={() => vibrateButton()} className="flex-1 md:flex-initial">
                 <Button 
                   size="lg"
                   className="w-full bg-white text-primary hover:bg-yellow-50 font-bold shadow-xl hover:shadow-2xl transition-all text-base md:text-base px-4 md:px-6 py-4 md:py-6"
@@ -1452,7 +1455,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
                   <span className="sm:hidden">ЦЕНА</span>
                 </Button>
               </a>
-              <a href="tel:+79841771588" onClick={trackPhoneClick} className="flex-1 md:flex-initial">
+              <a href="tel:+79841771588" onClick={(e) => { vibrateButton(); trackPhoneClick(); }} className="flex-1 md:flex-initial">
                 <Button 
                   size="lg"
                   className="w-full bg-green-500 text-white hover:bg-green-600 font-bold shadow-xl hover:shadow-2xl transition-all text-base md:text-base px-4 md:px-6 py-4 md:py-6"
