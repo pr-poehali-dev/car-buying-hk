@@ -9,14 +9,9 @@ import Icon from '@/components/ui/icon';
 import FAQ from '@/components/FAQ';
 import { ExitIntentPopup } from '@/components/ExitIntentPopup';
 import { 
-  sanitizeInput, 
-  validatePhone, 
   checkRateLimit, 
   recordSubmission, 
-  validateFormTiming,
-  createHoneypot,
-  checkHoneypot,
-  validateFormData
+  checkHoneypot
 } from '@/utils/formSecurity';
 import { CityData, getCityById, defaultCity } from '@/data/cities';
 import { trackFormSubmit, trackPhoneClick } from '@/utils/analytics';
@@ -185,52 +180,44 @@ function Index({ city: cityProp }: IndexProps = {}) {
     
     console.log('Form submitted', { evaluationForm });
     
+    // Проверяем honeypot (защита от ботов)
     if (!checkHoneypot(honeypot)) {
       console.warn('Bot detected - honeypot filled');
       return;
     }
     
-    if (!validateFormTiming(formOpenTime)) {
-      console.warn('Form timing validation failed');
-      alert('Пожалуйста, подождите несколько секунд перед отправкой');
-      return;
-    }
-    
+    // Проверяем rate limit
     if (!checkRateLimit()) {
       console.warn('Rate limit exceeded');
       alert('Вы отправили максимальное количество заявок. Позвоните нам: +7 984 177 15 88');
       return;
     }
     
-    const sanitizedData = {
-      phone: sanitizeInput(evaluationForm.phone),
-      brand: sanitizeInput(evaluationForm.brand),
-      model: sanitizeInput(evaluationForm.model),
-      year: sanitizeInput(evaluationForm.year),
-      city: sanitizeInput(evaluationForm.city),
-      condition: sanitizeInput(evaluationForm.condition)
-    };
+    // Очищаем и проверяем телефон
+    const cleanedPhone = evaluationForm.phone.replace(/\D/g, '');
+    console.log('Cleaned phone', cleanedPhone, 'length:', cleanedPhone.length);
     
-    console.log('Sanitized data', sanitizedData);
-    
-    const validation = validateFormData(sanitizedData);
-    if (!validation.isValid) {
-      console.warn('Validation failed', validation.errors);
-      alert('Ошибка валидации:\n' + validation.errors.join('\n'));
+    if (cleanedPhone.length !== 11) {
+      alert('Пожалуйста, введите корректный номер телефона');
       return;
     }
     
-    const cleanedPhone = sanitizedData.phone.replace(/\D/g, '');
-    console.log('Cleaned phone', cleanedPhone, 'length:', cleanedPhone.length);
+    // Проверяем что номер начинается с 7 или 8
+    if (!cleanedPhone.startsWith('7') && !cleanedPhone.startsWith('8')) {
+      alert('Номер телефона должен начинаться с 7 или 8');
+      return;
+    }
     
-    if (cleanedPhone.length < 10 || cleanedPhone.length > 11) {
-      alert('Пожалуйста, введите корректный номер телефона');
+    // Проверяем что номер не состоит из одинаковых цифр
+    const allSameDigit = /^(\d)\1+$/.test(cleanedPhone);
+    if (allSameDigit) {
+      alert('Введите корректный номер телефона');
       return;
     }
     
     console.log('All validations passed, sending lead...');
     recordSubmission();
-    await sendLeadToTelegram(sanitizedData.phone, 'form');
+    await sendLeadToTelegram(evaluationForm.phone, 'form');
   };
 
   const isPhoneValid = () => {
@@ -1422,7 +1409,7 @@ function Index({ city: cityProp }: IndexProps = {}) {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 md:bottom-28 md:right-8 bg-primary hover:bg-primary/90 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 bg-primary hover:bg-primary/90 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
           aria-label="Наверх"
         >
           <Icon name="ArrowUp" className="w-5 h-5 md:w-6 md:h-6" />
@@ -1431,44 +1418,6 @@ function Index({ city: cityProp }: IndexProps = {}) {
 
       {/* Exit Intent Popup */}
       <ExitIntentPopup onSubmit={handleExitIntentSubmit} />
-
-      {/* Sticky Bottom CTA Button - Mobile Optimized */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-primary via-red-600 to-secondary shadow-2xl border-t-4 border-yellow-400 animate-in slide-in-from-bottom duration-500">
-        <div className="max-w-7xl mx-auto px-3 py-4 md:py-4">
-          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-4">
-            <div className="flex-1 text-center md:text-left">
-              <p className="text-white font-bold text-base md:text-base mb-1">
-                🔥 Оценка +15% • Деньги за 15 минут
-              </p>
-              <p className="text-white/90 text-sm md:text-sm hidden md:block">
-                Оставьте телефон → Перезвоним за 30 сек
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-2 md:flex md:gap-3">
-              <a href="#evaluation" onClick={() => vibrateButton()} className="flex-1 md:flex-initial">
-                <Button 
-                  size="lg"
-                  className="w-full bg-white text-primary hover:bg-yellow-50 font-bold shadow-xl hover:shadow-2xl transition-all text-base md:text-base px-4 md:px-6 py-4 md:py-6"
-                >
-                  <Icon name="Calculator" className="w-5 h-5 md:w-5 md:h-5 mr-1 md:mr-2" />
-                  <span className="hidden sm:inline">УЗНАТЬ ЦЕНУ</span>
-                  <span className="sm:hidden">ЦЕНА</span>
-                </Button>
-              </a>
-              <a href="tel:+79841771588" onClick={(e) => { vibrateButton(); trackPhoneClick(); }} className="flex-1 md:flex-initial">
-                <Button 
-                  size="lg"
-                  className="w-full bg-green-500 text-white hover:bg-green-600 font-bold shadow-xl hover:shadow-2xl transition-all text-base md:text-base px-4 md:px-6 py-4 md:py-6"
-                >
-                  <Icon name="Phone" className="w-5 h-5 md:w-5 md:h-5 mr-1 md:mr-2 animate-pulse" />
-                  <span className="hidden sm:inline">ПОЗВОНИТЬ</span>
-                  <span className="sm:hidden">ЗВОНОК</span>
-                </Button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
