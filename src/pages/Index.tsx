@@ -279,13 +279,23 @@ function Index({ city: cityProp }: IndexProps = {}) {
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100"
-            >
-              <Icon name="Menu" className="w-6 h-6" />
-            </button>
+            {/* Mobile Phone Button & Menu */}
+            <div className="flex items-center gap-2 md:hidden">
+              <a 
+                href="tel:+79841771588" 
+                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-bold text-sm flex items-center gap-2 shadow-lg transition-all"
+                onClick={(e) => { vibrateButton(); trackPhoneClick(); }}
+              >
+                <Icon name="Phone" className="w-4 h-4 animate-pulse" />
+                Звонок
+              </a>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100"
+              >
+                <Icon name="Menu" className="w-6 h-6" />
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
@@ -331,6 +341,21 @@ function Index({ city: cityProp }: IndexProps = {}) {
               </span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile Call Button - Sticky on scroll */}
+      <div className="md:hidden bg-gradient-to-r from-green-500 to-green-600 border-b-2 border-green-700 sticky top-16 z-40 shadow-lg">
+        <div className="max-w-7xl mx-auto px-3 py-2">
+          <a 
+            href="tel:+79841771588" 
+            onClick={(e) => { vibrateButton(); trackPhoneClick(); }}
+            className="flex items-center justify-center gap-3 text-white font-bold text-lg py-3"
+          >
+            <Icon name="Phone" className="w-6 h-6 animate-pulse" />
+            📞 +7 984 177-15-88
+            <span className="bg-white/20 px-3 py-1 rounded-full text-sm">Позвонить</span>
+          </a>
         </div>
       </div>
 
@@ -1235,6 +1260,32 @@ function Index({ city: cityProp }: IndexProps = {}) {
 
       {/* FAQ Section */}
       <FAQ />
+
+      {/* Mobile CTA Before Contacts */}
+      <section className="md:hidden py-8 bg-gradient-to-r from-green-500 to-green-600">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-6">
+            <h3 className="text-white font-bold text-2xl mb-2">Остались вопросы?</h3>
+            <p className="text-white/90 text-lg">Позвоните — ответим за 30 секунд!</p>
+          </div>
+          <a 
+            href="tel:+79841771588" 
+            onClick={(e) => { vibrateButton(); trackPhoneClick(); }}
+            className="block"
+          >
+            <Button 
+              size="lg"
+              className="w-full bg-white text-green-600 hover:bg-gray-50 font-bold text-xl py-8 shadow-2xl hover:shadow-3xl transition-all"
+            >
+              <Icon name="Phone" className="w-8 h-8 mr-3 animate-pulse" />
+              📞 +7 984 177-15-88
+            </Button>
+          </a>
+          <p className="text-center text-white/80 text-sm mt-4">
+            ⚡ Работаем 8:00 - 20:00 • Звонки принимаем круглосуточно
+          </p>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contacts" className="py-12 md:py-20 bg-gray-900 text-white">
